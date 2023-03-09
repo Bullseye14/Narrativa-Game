@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject player;
-
-    private int speed = 7;
+    private int movementSpeed = 7;
 
     // El model original del player té una armadura, dues capes, una espasa i un escut
     // que es poden treure i deixar dins d'aquesta llista, així si volem representar 
@@ -17,19 +15,30 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        // Perque no es vegi el cursor
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+
+        Rotate();
     }
 
-    public void Move()
+    void Move()
     {
         Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        player.transform.position += Movement * speed * Time.deltaTime;
+        Movement *= movementSpeed;
+        Movement = transform.rotation * Movement;
+
+        transform.position += Movement * Time.deltaTime;
+    }
+
+    void Rotate()
+    {
+        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * 2f, 0));
     }
 }
