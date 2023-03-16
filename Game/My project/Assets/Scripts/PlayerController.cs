@@ -75,12 +75,15 @@ public class PlayerController : MonoBehaviour
 
     public void moveCC()
     {
-        
 
+        moveDirection = new Vector3(inputHandler.horizontalInput, 0f, inputHandler.verticalInput);
      
-        if(inputHandler.verticalInput > 0)
+        if(inputHandler.verticalInput > 0.1)
         {
             characterController.Move(transform.forward * movementSpeed * Time.deltaTime);
+        }else if (inputHandler.verticalInput < -0.1)
+        {
+            characterController.Move(transform.forward * -movementSpeed * Time.deltaTime);
         }
           
         
@@ -90,11 +93,11 @@ public class PlayerController : MonoBehaviour
     public void rotateCC()
     {
         //float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
-        //if(targetAngle > 0)
+        //if (Mathf.Abs(targetAngle) > 0)
         //{
         //    //angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothVelocity);
         //    //transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        //    transform.Rotate(transform.up, targetAngle*Time.deltaTime);
+        //    transform.Rotate(transform.up, targetAngle * Time.deltaTime);
         //}
     }
 

@@ -22,8 +22,22 @@ public class AnimatorHandler : MonoBehaviour
     public void updateAnimatorValues(float horizontalMovement,float verticalMovement) 
     {
         float totalMovement = new Vector2(horizontalMovement, verticalMovement).magnitude;
-      
-        animator.SetFloat("movementAmmount", totalMovement);
+
+
+
+        if (totalMovement > 0 && verticalMovement > 0.1 && horizontalMovement == 0)
+        {
+            animator.SetFloat("movementAmmount", verticalMovement);
+        }
+        else if (totalMovement > 0 && verticalMovement < 0.1 && horizontalMovement == 0)
+        {
+            animator.SetFloat("movementAmmount", verticalMovement);
+        }else if(totalMovement == 0)
+        {
+            animator.SetFloat("movementAmmount", totalMovement);
+        }
+
+        
         
     }
 }
