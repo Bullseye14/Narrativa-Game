@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 enum States
 {
     idle,
-    run
+    run,
+    jump
 }
 
 public class PlayerController : MonoBehaviour
@@ -16,89 +17,122 @@ public class PlayerController : MonoBehaviour
     AnimatorHandler animatorHandler;
 
     CharacterController characterController;
-    Rigidbody           rb;
-    Animator            animator;
-    public Camera       camera;
+    Rigidbody rb;
+    Animator animator;
+    public Camera camera;
 
 
 
     States currentState;
-
+    States previousState;
 
     Vector3 moveDirection;
     Vector3 rotateDirection;
 
 
-    private float walkSpeed = 3;
+
     private float runSpeed = 6;
     public float movementSpeed;
 
-    float angle;
-    public float turnSmoothTime = 0.1f;
-    float turnSmoothVelocity;
+    public float jumpForce = 10f;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        rb                  = GetComponent<Rigidbody>();
-        animator            = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         //camera              = GetComponent<Camera>();
-        inputHandler        = GetComponent<InputHandler>();
-        animatorHandler     = GetComponent<AnimatorHandler>();
+        inputHandler = GetComponent<InputHandler>();
+        animatorHandler = GetComponent<AnimatorHandler>();
     }
     void Start()
     {
-        currentState = States.idle;
+        changeState(States.idle);
     }
-
+    void changeState(States state)
+    {
+        previousState = currentState;
+        currentState = state;
+    }
     void Update()
     {
-        if(inputHandler.moveAmount > 0.55f)
+
+        switch (currentState)
         {
-            movementSpeed = runSpeed;
-        }else if(inputHandler.moveAmount < 0.55f)
-        {
-            movementSpeed = walkSpeed;
+            case States.idle:
+                if (inputHandler.moveAmount > 0.1 || inputHandler.moveAmount < -0.1) //existing movement
+                {
+                    changeState(States.run);
+                }
+                if (inputHandler.jumping == 1f)//jumping requested
+                {
+                    changeState(States.jump);
+                }
+
+                break;
+            case States.run:
+                if (inputHandler.moveAmount < 0.1 && inputHandler.moveAmount > -0.1)//non existing movement
+                {
+                    changeState(States.idle);
+                }
+                if (inputHandler.jumping == 1f)//jumping requested
+                {
+                    changeState(States.jump);
+                }
+
+                movementSpeed = runSpeed;
+
+                break;
+            case States.jump:
+                if (characterController.isGrounded == true)//jumping end when touch ground
+                {
+                    changeState(previousState);
+                }
+
+                break;
         }
-        
-        changeStates();
-  
-        
     }
 
     private void FixedUpdate()
     {
-        moveCC();
-        rotateCC();
+        if(currentState == States.jump)
+        {
+            rb.AddForce(new Vector3(0f, jumpForce, 0f));
+            inputHandler.jumping = 0f;
+            
+        }
+
+        if(currentState == States.run || currentState == States.jump) //jumping or running
+        {
+            moveChC();
+            rotateChC();
+        }
+        
 
     }
 
-    public void moveCC()
+    public void moveChC()
     {
-
-        moveDirection = new Vector3(inputHandler.horizontalInput, 0f, inputHandler.verticalInput);
-     
-        if(inputHandler.verticalInput > 0.1)
+        if (inputHandler.verticalInput > 0.1)
         {
             characterController.Move(transform.forward * movementSpeed * Time.deltaTime);
-        }else if (inputHandler.verticalInput < -0.1)
+        }
+        else if (inputHandler.verticalInput < -0.1)
         {
             characterController.Move(transform.forward * -movementSpeed * Time.deltaTime);
         }
-          
-        
-       
     }
 
-    public void rotateCC()
+    public void rotateChC()
     {
-        //float targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
-        //if (Mathf.Abs(targetAngle) > 0)
-        //{
-        //    //angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothVelocity);
-        //    //transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        //    transform.Rotate(transform.up, targetAngle * Time.deltaTime);
-        //}
+        if (inputHandler.horizontalInput > 0.1)
+        {
+            transform.Rotate(new Vector3(0f, 5f, 0f), Space.Self);
+        }
+        else if (inputHandler.horizontalInput < -0.1)
+        {
+            transform.Rotate(new Vector3(0f, -5f, 0f), Space.Self);
+        }
     }
 
     private void OnGUI()
@@ -107,13 +141,6 @@ public class PlayerController : MonoBehaviour
         //GUILayout.Label(lookDirStr);
     }
 
-  
 
 
-    void changeStates()
-    {
-        
-    }
-
-    
 }

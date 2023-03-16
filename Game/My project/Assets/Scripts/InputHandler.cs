@@ -7,9 +7,12 @@ public class InputHandler : MonoBehaviour
 
 
     public InputAction inputAction_move;
+    public InputAction inputAction_SpaceBar;
+
     public AnimatorHandler animatorHandler;
 
     public Vector2 inputMoveDir;
+    public float jumping;
 
     public float moveAmount;
 
@@ -20,12 +23,15 @@ public class InputHandler : MonoBehaviour
     void Awake()
     {
         animatorHandler = GetComponent<AnimatorHandler>();
+
+        jumping = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
         inputMoveDir = inputAction_move.ReadValue<Vector2>();
+        jumping = inputAction_SpaceBar.ReadValue<float>();
         verticalInput = inputMoveDir.y;
         horizontalInput = inputMoveDir.x;
         
@@ -42,10 +48,12 @@ public class InputHandler : MonoBehaviour
     private void OnEnable()
     {
         inputAction_move.Enable();
+        inputAction_SpaceBar.Enable();
     }
     private void OnDisable()
     {
         inputAction_move.Disable();
+        inputAction_SpaceBar.Disable();
     }
 
 }
