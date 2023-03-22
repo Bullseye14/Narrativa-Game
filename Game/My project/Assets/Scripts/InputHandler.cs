@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,14 +34,14 @@ public class InputHandler : MonoBehaviour
         jumping = inputAction_SpaceBar.ReadValue<float>();
         verticalInput = inputMoveDir.y;
         horizontalInput = inputMoveDir.x;
-        
+
         handleMovementInput();
     }
 
     private void handleMovementInput()
     {
         moveAmount = inputMoveDir.magnitude;
-        
+
         animatorHandler.updateAnimatorValues(horizontalInput, verticalInput);
     }
 

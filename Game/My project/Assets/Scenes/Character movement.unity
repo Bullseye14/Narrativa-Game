@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -440,119 +440,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7019920669011962644, guid: cc91c8ba8b9a34f4d99e70d721f60b64, type: 3}
   m_PrefabInstance: {fileID: 1154020755}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &731758604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731758600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285253e46fd1e46418bd2347b12734ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  verticalP: 0
-  horizontalP: 0
---- !u!114 &731758605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731758600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d79a78269e5b374aa21e542ee1dcd27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputAction_move:
-    m_Name: Input Action_move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 64375acc-afe9-4a69-a98d-40837eddcd7e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: d949c5dc-e72f-4022-a014-288447e31bba
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action_move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: c3a8a996-747e-4d13-9de2-a0cbde6e4bbf
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action_move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: d913936a-a523-4c00-8bbc-b238427d85c2
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action_move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 28268960-2f2c-4f0a-a909-8a014f38f7c8
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action_move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 9940bfc5-24cd-4d7c-b2ef-a4e1a0c93e79
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action_move
-      m_Flags: 8
-    m_Flags: 0
-  inputAction_SpaceBar:
-    m_Name: Input Action_Space Bar
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 73aa14c9-8f83-4020-985b-284a5f05e065
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 64d8c632-a544-4119-b837-2ef98ff9b05a
-      m_Path: <Keyboard>/space
-      m_Interactions: Tap
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input Action_Space Bar
-      m_Flags: 0
-    m_Flags: 0
-  animatorHandler: {fileID: 731758604}
-  inputMoveDir: {x: 0, y: 0}
-  jumping: 0
-  moveAmount: 0
-  verticalInput: 0
-  horizontalInput: 0
---- !u!114 &731758606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731758600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5afd593ad4adb7478e83fb73f2829ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 1974937652}
-  movementSpeed: 0
-  jumpForce: 0
 --- !u!54 &731758607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -569,6 +456,119 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &731758608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731758600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285253e46fd1e46418bd2347b12734ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verticalP: 0
+  horizontalP: 0
+--- !u!114 &731758609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731758600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d79a78269e5b374aa21e542ee1dcd27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputAction_move:
+    m_Name: Input Action_move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: fb8c5f2d-fa27-45b2-9754-192a6276b85f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 921f2572-db9b-4cf2-bbca-43fa7c379356
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action_move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 878dd7b0-58da-4249-8dd7-a6e57dde2abe
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action_move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: f372a121-a44b-44ee-aead-9d26ff1d5ed4
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action_move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: e0655a4d-4c66-4f0f-9525-1a9044506761
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action_move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: be2a424d-9cf3-4678-ba47-fc4c2894c148
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action_move
+      m_Flags: 8
+    m_Flags: 0
+  inputAction_SpaceBar:
+    m_Name: Input Action_Space Bar
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e90e3e54-f29d-4fde-aff3-959597b88daf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: cecd5a68-2d05-4bee-96e6-68bb020611f1
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Input Action_Space Bar
+      m_Flags: 0
+    m_Flags: 0
+  animatorHandler: {fileID: 731758608}
+  inputMoveDir: {x: 0, y: 0}
+  jumping: 0
+  moveAmount: 0
+  verticalInput: 0
+  horizontalInput: 0
+--- !u!114 &731758610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731758600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5afd593ad4adb7478e83fb73f2829ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1974937652}
+  movementSpeed: 0
+  jumpForce: 10
 --- !u!1 &1047080413
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974937649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 1.99, z: -2.3400927}
+  m_LocalPosition: {x: -0.16999999, y: 1.9899998, z: -2.3400927}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
