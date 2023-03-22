@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -95,19 +95,19 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentState == States.jump)
+        if(currentState == States.jump)
         {
             rb.AddForce(new Vector3(0f, jumpForce, 0f));
             inputHandler.jumping = 0f;
-
+            
         }
 
-        if (currentState == States.run || currentState == States.jump) //jumping or running
+        if(currentState == States.run || currentState == States.jump) //jumping or running
         {
             moveChC();
             rotateChC();
         }
-
+        
 
     }
 
