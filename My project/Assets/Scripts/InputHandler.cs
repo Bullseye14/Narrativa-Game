@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class InputHandler : MonoBehaviour
 {
-
-
     public InputAction inputAction_move;
     public InputAction inputAction_SpaceBar;
 
