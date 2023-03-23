@@ -27,20 +27,28 @@ public class MissionsManager : MonoBehaviour
 
     public void NewMission()
     {
-        missions[Random.Range(0, missions.Count)].SetActive(true);
-
-        for (int i = 0; i < missions.Count; ++i)
+        if (missions.Count > 0)
         {
-            if (missions[i].activeSelf)
+            missions[Random.Range(0, missions.Count)].SetActive(true);
+
+            for (int i = 0; i < missions.Count; ++i)
             {
-                activeMission = missions[i];
-                break;
+                if (missions[i].activeSelf)
+                {
+                    activeMission = missions[i];
+                    break;
+                }
             }
-        }
+        }        
     }
 
     public void ClearMission()
     {
+        for (int i = 0; i < missions.Count; ++i)
+        {
+            if (activeMission.name == missions[i].name)
+                missions.RemoveAt(i);
+        }
         activeMission.gameObject.SetActive(false);
         activeMission = null;
     }
