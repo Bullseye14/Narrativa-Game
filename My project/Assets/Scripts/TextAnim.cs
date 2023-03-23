@@ -14,7 +14,7 @@ public class TextAnim : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textMeshPro;
 
     // Velocitat a la que passen les lletres
-    private float speed = 0.05f;
+    private float speed = 0.1f;
 
     // Array amb totes les frases
     private string[] stringArray;
@@ -30,6 +30,8 @@ public class TextAnim : MonoBehaviour
 
     // Path on estan tots els diàlegs
     private string filePath;
+
+    public MissionsManager missionsManager;
 
     // Start is called before the first frame update
     void Start()
@@ -50,22 +52,24 @@ public class TextAnim : MonoBehaviour
             _textMeshPro.text = stringArray[i];
             StartCoroutine(TextVisible());
         }
+        else
+        {
+            this.gameObject.SetActive(false);
+            missionsManager.ClearMission();
+            missionsManager.NewMission();
+        }
     }
 
     private void Update()
     {
         if (waitingForNext)
         {
-            // Això ara ho he hagut de canviar perquè no sé 
-            // com funcionen els input actions aquests i ara mateix no va
-            if (nextButton.triggered)
+            if (nextButton.ReadValue<float>() > 0.3)
                 EndCheck();
         }
         else
         {
-            // Això ara ho he hagut de canviar perquè no sé 
-            // com funcionen els input actions aquests i ara mateix no va
-            if (accelerateButton.enabled)
+            if (accelerateButton.ReadValue<float>() > 0.3)
                 accelerating = true;
 
             else accelerating = false;
@@ -74,7 +78,7 @@ public class TextAnim : MonoBehaviour
         if (accelerating)
             speed = 0.02f;
         else
-            speed = 0.05f;
+            speed = 0.1f;
     }
 
     private IEnumerator TextVisible()
@@ -101,6 +105,18 @@ public class TextAnim : MonoBehaviour
 
             yield return new WaitForSeconds(speed);
         }
+    }
+
+    private void OnEnable()
+    {
+        accelerateButton.Enable();
+        nextButton.Enable();
+    }
+
+    private void OnDisable()
+    {
+        accelerateButton.Disable();
+        nextButton.Disable();
     }
 }
 
