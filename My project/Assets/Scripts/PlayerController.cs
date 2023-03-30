@@ -12,29 +12,23 @@ enum States
 
 public class PlayerController : MonoBehaviour
 {
-
     InputHandler inputHandler;
     AnimatorHandler animatorHandler;
+    public MissionsManager missionManager;
 
     CharacterController characterController;
     Rigidbody rb;
     Animator animator;
     public Camera camera;
 
-
-
     States currentState;
     States previousState;
 
-    Vector3 moveDirection;
-    Vector3 rotateDirection;
-
-
-
-    private float runSpeed = 6;
     public float movementSpeed;
 
     public float jumpForce = 10f;
+
+    public float rotationSpeed = 4f;
 
     private void Awake()
     {
@@ -45,18 +39,20 @@ public class PlayerController : MonoBehaviour
         inputHandler = GetComponent<InputHandler>();
         animatorHandler = GetComponent<AnimatorHandler>();
     }
+
     void Start()
     {
         changeState(States.idle);
     }
+
     void changeState(States state)
     {
         previousState = currentState;
         currentState = state;
     }
+
     void Update()
     {
-
         switch (currentState)
         {
             case States.idle:
@@ -64,27 +60,25 @@ public class PlayerController : MonoBehaviour
                 {
                     changeState(States.run);
                 }
-                if (inputHandler.jumping == 1f)//jumping requested
+                if (inputHandler.jumping == 1f) //jumping requested
                 {
                     changeState(States.jump);
                 }
 
                 break;
             case States.run:
-                if (inputHandler.moveAmount < 0.1 && inputHandler.moveAmount > -0.1)//non existing movement
+                if (inputHandler.moveAmount < 0.1 && inputHandler.moveAmount > -0.1) //non existing movement
                 {
                     changeState(States.idle);
                 }
-                if (inputHandler.jumping == 1f)//jumping requested
+                if (inputHandler.jumping == 1f) //jumping requested
                 {
                     changeState(States.jump);
                 }
 
-                movementSpeed = runSpeed;
-
                 break;
             case States.jump:
-                if (characterController.isGrounded == true)//jumping end when touch ground
+                if (characterController.isGrounded == true) //jumping end when touch ground
                 {
                     changeState(previousState);
                 }
@@ -95,20 +89,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(currentState == States.jump)
+        if (currentState == States.jump)
         {
             rb.AddForce(new Vector3(0f, jumpForce, 0f));
             inputHandler.jumping = 0f;
-            
         }
 
-        if(currentState == States.run || currentState == States.jump) //jumping or running
+        if (currentState == States.run || currentState == States.jump) //jumping or running
         {
             moveChC();
             rotateChC();
         }
-        
-
     }
 
     public void moveChC()
@@ -127,11 +118,11 @@ public class PlayerController : MonoBehaviour
     {
         if (inputHandler.horizontalInput > 0.1)
         {
-            transform.Rotate(new Vector3(0f, 5f, 0f), Space.Self);
+            transform.Rotate(new Vector3(0f, rotationSpeed, 0f), Space.Self);
         }
         else if (inputHandler.horizontalInput < -0.1)
         {
-            transform.Rotate(new Vector3(0f, -5f, 0f), Space.Self);
+            transform.Rotate(new Vector3(0f, -rotationSpeed, 0f), Space.Self);
         }
     }
 
@@ -140,7 +131,4 @@ public class PlayerController : MonoBehaviour
         //string lookDirStr = "x = "+lookDir.x+" y = "+ lookDir.y;
         //GUILayout.Label(lookDirStr);
     }
-
-
-
 }

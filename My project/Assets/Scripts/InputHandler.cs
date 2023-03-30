@@ -10,6 +10,8 @@ public class InputHandler : MonoBehaviour
 
     public AnimatorHandler animatorHandler;
 
+    public MissionsManager missionsManager;
+
     public Vector2 inputMoveDir;
     public float jumping;
 
@@ -29,12 +31,23 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputMoveDir = inputAction_move.ReadValue<Vector2>();
-        jumping = inputAction_SpaceBar.ReadValue<float>();
-        verticalInput = inputMoveDir.y;
-        horizontalInput = inputMoveDir.x;
-        
-        handleMovementInput();
+        if (missionsManager.playerCanMove)
+        {
+            inputMoveDir = inputAction_move.ReadValue<Vector2>();
+            jumping = inputAction_SpaceBar.ReadValue<float>();
+            verticalInput = inputMoveDir.y;
+            horizontalInput = inputMoveDir.x;
+
+            handleMovementInput();
+        }
+
+        else
+        {
+            inputMoveDir = Vector2.zero;
+            jumping = verticalInput = horizontalInput = 0f;
+
+            handleMovementInput();
+        }
     }
 
     private void handleMovementInput()

@@ -44,6 +44,8 @@ public class MissionsManager : MonoBehaviour
 
     public void ClearMission()
     {
+        playerCanMove = true;
+
         for (int i = 0; i < missions.Count; ++i)
         {
             if (activeMission.name == missions[i].name)
