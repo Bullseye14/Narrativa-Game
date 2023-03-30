@@ -36,7 +36,17 @@ ModelImporter:
   - first:
       74: -2469224417514991532
     second: CharacterArmature|Walk_Carry
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: dbada3526bb84cc47992345cb23c8782, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 27e2881f0a309614b8eff1ba7cee9096, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
