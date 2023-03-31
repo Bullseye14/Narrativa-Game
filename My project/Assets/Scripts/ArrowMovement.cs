@@ -5,18 +5,23 @@ using UnityEngine.InputSystem;
 
 public class ArrowMovement : MonoBehaviour
 {
+    public RectTransform rectTransf;
+
     public InputAction inputMoveArrow;
 
-    public float inputArrow;
+    private float inputArrow;
 
-    public float speed = 3f;
+    private Vector3 currentRot;
 
-    public Quaternion newRot;
+    public float maxRot;
+    public float rotationSpeed;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        currentRot = Vector3.zero;
+        currentRot.z = maxRot;
+
+        transform.Rotate(currentRot);
     }
 
     // Update is called once per frame
@@ -24,16 +29,15 @@ public class ArrowMovement : MonoBehaviour
     {
         inputArrow = inputMoveArrow.ReadValue<float>();
 
-        if (inputArrow != 0)
-            MoveArrow();
+        RotateArrow(inputArrow);
     }
 
-    void MoveArrow()
+    void RotateArrow(float direction)
     {
-        newRot = Quaternion.identity;
-        newRot.z = inputArrow * 45f;
+        currentRot.z -= direction * rotationSpeed / 10;
 
-        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, newRot, Time.deltaTime * speed);
+        currentRot.z = Mathf.Clamp(currentRot.z, 0, maxRot * 2);
+        transform.localRotation = Quaternion.Euler(currentRot);
     }
 
     private void OnEnable()
