@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class ArrowMovement : MonoBehaviour
 {
-    public RectTransform rectTransf;
-
     public InputAction inputMoveArrow;
 
     private float inputArrow;
