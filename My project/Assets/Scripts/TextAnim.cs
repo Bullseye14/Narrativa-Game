@@ -56,7 +56,7 @@ public class TextAnim : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             missionsManager.ClearMission();
-            missionsManager.NewMission();
+            //missionsManager.NewMission();
         }
     }
 

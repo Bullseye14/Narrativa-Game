@@ -14,6 +14,8 @@ public class MissionsManager : MonoBehaviour
 
     public bool playerCanMove = true;
 
+    public GameObject decisionManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class MissionsManager : MonoBehaviour
 
     public void NewMission()
     {
+        playerCanMove = true;
+
         if (missions.Count > 0)
         {
             missions[Random.Range(0, missions.Count)].SetActive(true);
@@ -44,7 +48,7 @@ public class MissionsManager : MonoBehaviour
 
     public void ClearMission()
     {
-        playerCanMove = true;
+        // playerCanMove = true;
 
         for (int i = 0; i < missions.Count; ++i)
         {
@@ -53,6 +57,8 @@ public class MissionsManager : MonoBehaviour
         }
         activeMission.gameObject.SetActive(false);
         activeMission = null;
+
+        decisionManager.SetActive(true);
     }
 
     private void Update()

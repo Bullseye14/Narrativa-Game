@@ -236,7 +236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &146115234
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1879,6 +1879,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 1430183895}
+  arrowPos: 0
+  enterButton:
+    m_Name: Enter Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9622b592-29b7-4989-891b-77574e501633
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b7636ec0-f60e-4716-921a-b243de68215c
+      m_Path: <Keyboard>/enter
+      m_Interactions: Tap
+      m_Processors: 
+      m_Groups: 
+      m_Action: Enter Button
+      m_Flags: 0
+    m_Flags: 0
+  decisionMang: {fileID: 146115233}
+  missionsManager: {fileID: 1216547448}
 --- !u!1 &1021652255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,6 +2350,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   playerCanMove: 1
+  decisionManager: {fileID: 146115233}
 --- !u!1 &1308725344
 GameObject:
   m_ObjectHideFlags: 0
