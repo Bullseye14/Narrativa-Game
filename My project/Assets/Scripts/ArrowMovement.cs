@@ -16,10 +16,7 @@ public class ArrowMovement : MonoBehaviour
 
     private void Start()
     {
-        currentRot = Vector3.zero;
-        currentRot.z = maxRot;
-
-        transform.Rotate(currentRot);
+        SetArrowToIni();
     }
 
     // Update is called once per frame
@@ -36,6 +33,14 @@ public class ArrowMovement : MonoBehaviour
 
         currentRot.z = Mathf.Clamp(currentRot.z, 0, maxRot * 2);
         transform.localRotation = Quaternion.Euler(currentRot);
+    }
+
+    public void SetArrowToIni()
+    {
+        currentRot = Vector3.zero;
+        currentRot.z = maxRot;
+
+        transform.Rotate(currentRot);
     }
 
     private void OnEnable()

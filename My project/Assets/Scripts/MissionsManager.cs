@@ -50,6 +50,9 @@ public class MissionsManager : MonoBehaviour
     {
         // playerCanMove = true;
 
+        decisionManager.SetActive(true);
+        decisionManager.GetComponent<DecisionManager>().Start();
+
         for (int i = 0; i < missions.Count; ++i)
         {
             if (activeMission.name == missions[i].name)
@@ -57,8 +60,6 @@ public class MissionsManager : MonoBehaviour
         }
         activeMission.gameObject.SetActive(false);
         activeMission = null;
-
-        decisionManager.SetActive(true);
     }
 
     private void Update()

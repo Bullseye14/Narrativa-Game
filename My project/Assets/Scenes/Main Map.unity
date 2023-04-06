@@ -230,6 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146115234}
+  - component: {fileID: 146115235}
   m_Layer: 5
   m_Name: Decision
   m_TagString: Untagged
@@ -260,6 +261,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &146115235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146115233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510080298e370684eb5a999636499c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 1430183895}
+  arrowPos: 0
+  enterButton:
+    m_Name: Enter Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d04218f3-ff5b-40a3-9aaa-e3fea10bcb96
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2c114939-6f2e-427d-b426-8edd894eae0c
+      m_Path: <Keyboard>/enter
+      m_Interactions: Tap
+      m_Processors: 
+      m_Groups: 
+      m_Action: Enter Button
+      m_Flags: 0
+    m_Flags: 0
+  missionsManager: {fileID: 1216547448}
 --- !u!1 &154676095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,7 +1869,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991159603}
-  - component: {fileID: 991159604}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1866,39 +1898,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &991159604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991159602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 510080298e370684eb5a999636499c1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrow: {fileID: 1430183895}
-  arrowPos: 0
-  enterButton:
-    m_Name: Enter Button
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9622b592-29b7-4989-891b-77574e501633
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b7636ec0-f60e-4716-921a-b243de68215c
-      m_Path: <Keyboard>/enter
-      m_Interactions: Tap
-      m_Processors: 
-      m_Groups: 
-      m_Action: Enter Button
-      m_Flags: 0
-    m_Flags: 0
-  decisionMang: {fileID: 146115233}
-  missionsManager: {fileID: 1216547448}
 --- !u!1 &1021652255
 GameObject:
   m_ObjectHideFlags: 0

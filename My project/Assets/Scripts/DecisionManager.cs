@@ -24,27 +24,32 @@ public class DecisionManager : MonoBehaviour
 
     public InputAction enterButton;
 
-    public GameObject decisionMang;
     public MissionsManager missionsManager;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        arrow.GetComponent<ArrowMovement>().SetArrowToIni();
+
         // TO DO: SEMPRE SORTIRÀ LA MISSION 1
-        filePath = "Assets/UI/Decisions/Texts/" + "Mission 1" + ".txt";
+        if (missionsManager.activeMission != null)
+            filePath = "Assets/UI/Decisions/Texts/" + missionsManager.activeMission.name + ".txt";
+
         decisionsText = File.ReadAllLines(filePath);
 
-        text1img = GameObject.Find("Option 1 img");
-        text2img = GameObject.Find("Option 2 img");
+        text1img = GameObject.Find("Text/Option 1 img");
+        text2img = GameObject.Find("Text/Option 2 img");
 
         text1img.transform.localScale = Vector3.one;
         text2img.transform.localScale = Vector3.one;
 
-        decision1 = GameObject.Find("Option 1 img/Option 1").GetComponent<TextMeshProUGUI>();
-        decision2 = GameObject.Find("Option 2 img/Option 2").GetComponent<TextMeshProUGUI>();
+        decision1 = GameObject.Find("Text/Option 1 img/Option 1").GetComponent<TextMeshProUGUI>();
+        decision2 = GameObject.Find("Text/Option 2 img/Option 2").GetComponent<TextMeshProUGUI>();
 
         decision1.text = decisionsText[0];
         decision2.text = decisionsText[1];
+
+        SelectedAnswer(0);
     }
 
     // Update is called once per frame
@@ -54,13 +59,13 @@ public class DecisionManager : MonoBehaviour
 
         if (enterButton.ReadValue<float>() > 0.3 && rightHovered)
         {
-            decisionMang.SetActive(false);
+            this.gameObject.SetActive(false);
             missionsManager.NewMission();
         }
 
         else if (enterButton.ReadValue<float>() > 0.3 && leftHovered)
         {
-            decisionMang.SetActive(false);
+            this.gameObject.SetActive(false);
             missionsManager.NewMission();
         }
 
