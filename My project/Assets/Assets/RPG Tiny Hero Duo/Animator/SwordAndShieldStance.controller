@@ -35,7 +35,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MoveLFT_Battle_RM_SwordAndShield
+  m_Name: ieldFWD_Battle_RM_SwordAndShield
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -119,7 +119,7 @@ AnimatorStateMachine:
     m_Position: {x: 110, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7613074235327426342}
-    m_Position: {x: 310, y: 20, z: 0}
+    m_Position: {x: 320, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7196530883823515979}
     m_Position: {x: 320, y: 300, z: 0}
