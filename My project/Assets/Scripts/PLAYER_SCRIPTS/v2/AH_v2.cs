@@ -6,16 +6,30 @@ public class AH_v2 : MonoBehaviour
 {
 
     Animator animator;
+    AnimatorClipInfo[] currentClipInfo;
+    public bool attacking;
 
+    public string currentAnimation;
 
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         
     }
+    
+
+    public void setAnimatorMovementValues(float movement)
+    {
+        animator.SetFloat("movementAmmount", movement);
+    }
+
+    public void playOneTimeAnimation(string str)
+    {
+        animator.SetTrigger(str);
+        
+    }
+    
 }

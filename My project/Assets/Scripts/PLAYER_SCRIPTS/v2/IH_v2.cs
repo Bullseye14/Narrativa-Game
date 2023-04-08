@@ -36,9 +36,9 @@ public class IH_v2 : MonoBehaviour
        
     }
 
-    void callJump(InputAction.CallbackContext obj)
+    void callAttack1(InputAction.CallbackContext obj)
     {
-       
+        playerController.setAttackValues("attackOrder2");
     }
 
     private void OnEnable()
@@ -46,7 +46,7 @@ public class IH_v2 : MonoBehaviour
         move = playerInputActions.Player.Move;
         move.Enable();
 
-        playerInputActions.Player.Attack.performed += callJump;
+        playerInputActions.Player.Attack.performed += callAttack1;
         playerInputActions.Player.Attack.Enable();
     }
 

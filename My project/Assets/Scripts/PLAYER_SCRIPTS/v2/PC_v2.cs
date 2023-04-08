@@ -13,25 +13,26 @@ public class PC_v2 : MonoBehaviour
     public float movementSpeed;
     public float rotationSpeed = 4f;
 
-
+    AH_v2 animatorHandler;
 
     CharacterController characterController;
+    Rigidbody rb;
 
-
+    public bool attacking;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animatorHandler = GetComponent<AH_v2>();
+
         movementSpeed = 10f;
+        attacking = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (characterController.isGrounded == true)
-        {
-            Debug.Log("cc grounded");
-        }
+        
     }
 
 
@@ -39,6 +40,11 @@ public class PC_v2 : MonoBehaviour
     {
         moveChC();
         rotateChC();
+
+        if (attacking)
+        {
+           //set colliders for attack
+        }
     }
 
 
@@ -47,6 +53,14 @@ public class PC_v2 : MonoBehaviour
         horizontalInput = moveVec.x;
         verticalInput = moveVec.y;
         Debug.Log("pc movement = " + moveVec);
+
+        animatorHandler.setAnimatorMovementValues(moveVec.magnitude);
+    }
+
+    public void setAttackValues(string str)
+    {
+        animatorHandler.playOneTimeAnimation(str);
+        attacking = true;
     }
 
     private void moveChC()
@@ -74,5 +88,6 @@ public class PC_v2 : MonoBehaviour
         }
     }
 
+    
 
 }
