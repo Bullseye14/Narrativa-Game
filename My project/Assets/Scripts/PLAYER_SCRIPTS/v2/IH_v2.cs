@@ -11,9 +11,11 @@ public class IH_v2 : MonoBehaviour
     private InputAction attack;
     public PC_v2 playerController;
 
+    public MissionsManager missionsManager;
     private void Awake()
     {
         playerInputActions = new InputActions();
+        missionsManager =  GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
     }
 
 
@@ -31,14 +33,23 @@ public class IH_v2 : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 movement = move.ReadValue<Vector2>();
-        playerController.setMovementValues(movement);
+
+        if (missionsManager.playerCanMove)
+        {
+            playerController.setMovementValues(movement);
+        }
+        
             
        
     }
 
     void callAttack1(InputAction.CallbackContext obj)
     {
-        playerController.setAttackValues("attackOrder2");
+
+        if (missionsManager.playerCanMove)
+        {
+            playerController.setAttackValues("attackOrder2");
+        }
     }
 
     private void OnEnable()
