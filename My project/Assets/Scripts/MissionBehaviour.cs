@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class MissionBehaviour : MonoBehaviour
 {
-    public Material mainMat;
-    public Material activeMat;
+    // TO DO: SI ESTÀ INTERACTABLE, POSAR ALGUN FEEDBACK AL PERSONATGE
 
     public bool interactable;
 
     private void OnTriggerEnter(Collider other)
     {
-        this.gameObject.GetComponent<Renderer>().material = activeMat;
         interactable = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        this.gameObject.GetComponent<Renderer>().material = mainMat;
         interactable = false;
     }
 }
