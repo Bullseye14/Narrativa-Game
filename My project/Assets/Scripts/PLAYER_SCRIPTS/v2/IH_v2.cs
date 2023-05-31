@@ -9,6 +9,8 @@ public class IH_v2 : MonoBehaviour
     private InputActions playerInputActions;
     private InputAction move;
     private InputAction attack;
+    private InputAction dash;
+
     public PC_v2 playerController;
 
     public MissionsManager missionsManager;
@@ -45,10 +47,25 @@ public class IH_v2 : MonoBehaviour
 
     void callAttack1(InputAction.CallbackContext obj)
     {
-
         if (missionsManager.playerCanMove)
         {
-            playerController.setAttackValues("attackOrder2");
+            playerController.setAttackValues("attackorder1");
+        }
+    }
+
+    void callAttack(InputAction.CallbackContext obj)
+    {
+        if (missionsManager.playerCanMove)
+        {
+            playerController.setAttackValues("attackorder");
+        }
+    }
+
+    void callDash(InputAction.CallbackContext obj)
+    {
+        if (missionsManager.playerCanMove)
+        {
+            playerController.DashNow();
         }
     }
 
@@ -57,14 +74,20 @@ public class IH_v2 : MonoBehaviour
         move = playerInputActions.Player.Move;
         move.Enable();
 
-        playerInputActions.Player.Attack.performed += callAttack1;
+
+        playerInputActions.Player.Attack1.performed += callAttack1;
+        playerInputActions.Player.Attack1.Enable();
+        playerInputActions.Player.Attack.performed += callAttack;
         playerInputActions.Player.Attack.Enable();
+        playerInputActions.Player.Dash.performed += callDash;
+        playerInputActions.Player.Dash.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
         playerInputActions.Player.Attack.Disable();
+        playerInputActions.Player.Dash.Disable();
     }
 
 
