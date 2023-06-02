@@ -11,7 +11,7 @@ public class PC_v2 : MonoBehaviour
     public float horizontalInput;
 
     public float movementSpeed;
-    public float rotationSpeed = 4f;
+    public float rotationSpeed;
 
     AH_v2 animatorHandler;
 
@@ -21,7 +21,7 @@ public class PC_v2 : MonoBehaviour
     public bool attacking;
 
     float DashCallTime;
-
+    float speedMultiplyer;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,8 +29,10 @@ public class PC_v2 : MonoBehaviour
         animatorHandler = GetComponent<AH_v2>();
 
         movementSpeed = 10f;
+        rotationSpeed = 6f;
         attacking = false;
         DashCallTime = 0;
+        speedMultiplyer = 1f;
     }
 
     // Update is called once per frame
@@ -57,9 +59,16 @@ public class PC_v2 : MonoBehaviour
                  
         horizontalInput = moveVec.x;
         verticalInput = moveVec.y;
-        Debug.Log("pc movement = " + moveVec);
-
-        animatorHandler.setAnimatorMovementValues(moveVec.magnitude);
+       
+        if(verticalInput != 0)
+        {
+            animatorHandler.setAnimatorMovementValues(moveVec.magnitude);
+        }
+        else
+        {
+            animatorHandler.setAnimatorMovementValues(0);
+        }
+        
     }
 
     public void setAttackValues(string str)
@@ -70,14 +79,18 @@ public class PC_v2 : MonoBehaviour
 
     public void DashNow()
     {
-        DashCallTime = Time.time;
+        if(Time.time - DashCallTime > 2)
+        {
+            DashCallTime = Time.time;
+            speedMultiplyer = 6.0f;
+        }    
     }
 
     private void moveChC()
     {
-        float speedMultiplyer = 1.0f;
-        if (Time.time - DashCallTime < 0.5)
-            speedMultiplyer = 3.0f;
+        
+        if (Time.time - DashCallTime > 0.2)//dash duration
+            speedMultiplyer = 1.0f;//return to normal velocity
 
         if (verticalInput > 0.1)
         {

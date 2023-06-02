@@ -10,7 +10,6 @@ public class IH_v2 : MonoBehaviour
     private InputAction move;
     private InputAction attack;
     private InputAction dash;
-
     public PC_v2 playerController;
 
     public MissionsManager missionsManager;
@@ -57,7 +56,11 @@ public class IH_v2 : MonoBehaviour
     {
         if (missionsManager.playerCanMove)
         {
-            playerController.setAttackValues("attackorder");
+            float attack = Random.Range(0f, 10f);
+            if(attack < 7) {
+                playerController.setAttackValues("attackorder");
+            }
+           
         }
     }
 
@@ -81,13 +84,17 @@ public class IH_v2 : MonoBehaviour
         playerInputActions.Player.Attack.Enable();
         playerInputActions.Player.Dash.performed += callDash;
         playerInputActions.Player.Dash.Enable();
+
+        
     }
 
     private void OnDisable()
     {
         move.Disable();
         playerInputActions.Player.Attack.Disable();
+        playerInputActions.Player.Attack1.Disable();
         playerInputActions.Player.Dash.Disable();
+        
     }
 
 
