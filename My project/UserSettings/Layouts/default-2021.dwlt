@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 17
+  controlID: 31
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 23
+  controlID: 17
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 24
+  controlID: 18
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -501,9 +501,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -4.566346, y: 66.804085, z: -27.520752}
+    m_Target: {x: -41.86312, y: 19.664795, z: -19.537727}
     speed: 2
-    m_Value: {x: -4.566346, y: 66.804085, z: -27.520752}
+    m_Value: {x: -41.86312, y: 19.664795, z: -19.537727}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -550,13 +550,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.54112905, y: -0.41933858, z: 0.3570097, w: -0.63555366}
+    m_Target: {x: 0.57028955, y: -0.15481476, z: 0.110513054, w: 0.79915756}
     speed: 2
-    m_Value: {x: -0.54016167, y: -0.4198632, z: 0.35637137, w: -0.6363488}
+    m_Value: {x: 0.5704365, y: -0.15361097, z: 0.10965401, w: 0.79936343}
   m_Size:
-    m_Target: 2.1168172
+    m_Target: 97.70932
     speed: 2
-    m_Value: 2.1168172
+    m_Value: 97.70932
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -622,22 +622,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Assets/Elf Village/fbx/full
+    - Assets/Mission Manager/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Assets/Elf Village/fbx/full
+  - Assets/Mission Manager/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\fcbal\Documents\GitHub\Narrativa-Game\My project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: fc610000
-    m_LastClickedID: 25084
-    m_ExpandedIDs: 00000000b0610000b2610000b4610000b6610000b8610000ba610000bc610000be610000c0610000c2610000f2610000f4610000f66100004a6200004e6200003a7700003e770000b27d000000ca9a3b
+    scrollPos: {x: 0, y: 29}
+    m_SelectedIDs: de730000
+    m_LastClickedID: 29662
+    m_ExpandedIDs: 00000000b6720000b87200001c7300006c7300007473000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -665,7 +665,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b0610000b2610000b4610000b6610000b8610000ba610000bc610000be610000c0610000c2610000
+    m_ExpandedIDs: 00000000b4720000b6720000b8720000ba720000bc720000be720000c0720000c2720000c4720000c6720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -792,10 +792,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 32}
-      m_SelectedIDs: a447feff
-      m_LastClickedID: -112732
-      m_ExpandedIDs: 48ccfeff1af3feff84f0ffff0ef1ffff76f1ffff98f2ffffce6200005c630000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: dae6ffffdcf8ffff34fbffff785d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -811,7 +811,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 3}
+        m_ClientGUIView: {fileID: 4}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
