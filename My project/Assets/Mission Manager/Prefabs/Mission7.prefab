@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f49f75daf043dd48b324ec7d52b18cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dificultat: 0
+  dificultat: 1
   interactable: 1
   missionState: 0
   activeMission: 0
