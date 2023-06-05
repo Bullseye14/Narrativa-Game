@@ -9,14 +9,35 @@ public class MissionBehaviour : MonoBehaviour
 
     private string path = "Assets/Mission Manager/UI/Dialogs/Texts/";
 
-    // Interactable hauria d'estar sempre?
-    public bool interactable = true;
-
     // 0 for mission not active, 1 for mission active, 2 for post-mission
     public int missionState = 0;
 
     // Bool que ens diu si la missió està activa ara mateix
     public bool activeMission = false;
+
+    // Si és 0, vol dir que hem escollit l'opció de les Moires, si és 1, l'altra
+    public int chosen;
+
+    public MissionsManager missionManager;
+
+    public string fixedName;
+
+    private void Start()
+    {
+        missionManager = GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
+
+        fixedName = FixName();
+    }
+
+    // Perque el path sino busca Mission7(Clone), treiem el (Clone) i ho troba bé
+    private string FixName()
+    {
+        string newname = this.gameObject.name;
+
+        char[] removeThis = { '(', ')', 'e', 'o', 'l', 'C', 'n' };
+
+        return newname.TrimEnd(removeThis);
+    }
 
     public string DesiredFilePath()
     {
@@ -32,8 +53,8 @@ public class MissionBehaviour : MonoBehaviour
                 filePath = Mission();
                 break;
 
-            case 2: // de moment postmission1, ja veurem com decidim si diu 1 o l'altre
-                filePath = PostMission1();
+            case 2:
+                filePath = PostMission(chosen);
                 break;
 
         }
@@ -43,31 +64,30 @@ public class MissionBehaviour : MonoBehaviour
 
     private string PreMission()
     {
-        return "PreMission/" + this.gameObject.name + ".txt";
+        return path + "PreMission/" + fixedName + ".txt";
     }
 
     private string Mission()
     {
-        return "Mission/" + this.gameObject.name + ".txt";
+        return path + "Mission/" + fixedName + ".txt";
     }
 
-    private string PostMission1()
+    private string PostMission(int chosen)
     {
-        return "Post1/" + this.gameObject.name + ".txt";
-    }
+        if (chosen == 0)
+            return path + "Post1/" + fixedName + ".txt";
 
-    private string PostMission2()
-    {
-        return "Post2/" + this.gameObject.name + ".txt";
+        else
+            return path + "Post2/" + fixedName + ".txt";
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        interactable = true;
+        missionManager.interactingMission = this.gameObject;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        interactable = false;
+        missionManager.interactingMission = null;
     }
 }

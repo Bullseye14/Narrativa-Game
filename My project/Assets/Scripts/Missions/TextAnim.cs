@@ -56,11 +56,20 @@ public class TextAnim : MonoBehaviour
             _textMeshPro.text = stringArray[i];
             StartCoroutine(TextVisible());
         }
+
         else
         {
+            i = 0;
+            _textMeshPro.text = "";
+
             this.gameObject.SetActive(false);
-            missionsManager.ClearMission();
-            //missionsManager.NewMission();
+
+            missionsManager.playerCanMove = true;
+
+            if (missionsManager.interactingMission.GetComponent<MissionBehaviour>().missionState == 1)
+            {
+                missionsManager.DecisionTime();
+            }
         }
     }
 
@@ -71,6 +80,7 @@ public class TextAnim : MonoBehaviour
             if (nextButton.ReadValue<float>() > 0.3)
                 EndCheck();
         }
+
         else
         {
             if (accelerateButton.ReadValue<float>() > 0.3)

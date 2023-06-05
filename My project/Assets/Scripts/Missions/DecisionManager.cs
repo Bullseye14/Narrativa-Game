@@ -26,15 +26,9 @@ public class DecisionManager : MonoBehaviour
 
     public MissionsManager missionsManager;
 
-    // Start is called before the first frame update
     public void Start()
     {
         arrow.GetComponent<ArrowMovement>().SetArrowToIni();
-
-        if (missionsManager.activeMission != null)
-            filePath = "Assets/Mission Manager/UI/Decisions/Texts/" + missionsManager.activeMission.name + ".txt";
-
-        decisionsText = File.ReadAllLines(filePath);
 
         text1img = GameObject.Find("Text/Option 1 img");
         text2img = GameObject.Find("Text/Option 2 img");
@@ -45,10 +39,19 @@ public class DecisionManager : MonoBehaviour
         decision1 = GameObject.Find("Text/Option 1 img/Option 1").GetComponent<TextMeshProUGUI>();
         decision2 = GameObject.Find("Text/Option 2 img/Option 2").GetComponent<TextMeshProUGUI>();
 
+        SelectedAnswer(0);
+    }
+
+    public void NewDecision()
+    {
+        arrow.GetComponent<ArrowMovement>().SetArrowToIni();
+
+        filePath = "Assets/Mission Manager/UI/Decisions/Texts/" + missionsManager.interactingMission.GetComponent<MissionBehaviour>().fixedName + ".txt";
+
+        decisionsText = File.ReadAllLines(filePath);
+
         decision1.text = decisionsText[0];
         decision2.text = decisionsText[1];
-
-        SelectedAnswer(0);
     }
 
     // Update is called once per frame
@@ -59,13 +62,13 @@ public class DecisionManager : MonoBehaviour
         if (enterButton.ReadValue<float>() > 0.3 && rightHovered)
         {
             this.gameObject.SetActive(false);
-            missionsManager.NewMission();
+            missionsManager.SelectedAnswer(1);
         }
 
         else if (enterButton.ReadValue<float>() > 0.3 && leftHovered)
         {
             this.gameObject.SetActive(false);
-            missionsManager.NewMission();
+            missionsManager.SelectedAnswer(0);
         }
 
         SelectedAnswer(arrowPos);        
