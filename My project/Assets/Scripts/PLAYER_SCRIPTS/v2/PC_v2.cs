@@ -16,8 +16,9 @@ public class PC_v2 : MonoBehaviour
     AH_v2 animatorHandler;
 
     CharacterController characterController;
+    public Camera camera;
     Rigidbody rb;
-
+    Vector3 movementForward;
     public bool attacking;
 
     float DashCallTime;
@@ -91,27 +92,44 @@ public class PC_v2 : MonoBehaviour
         
         if (Time.time - DashCallTime > 0.2)//dash duration
             speedMultiplyer = 1.0f;//return to normal velocity
+        float y = transform.position.y;
+        movementForward = Vector3.Normalize(transform.position - camera.transform.position);
+        
 
         if (verticalInput > 0.1)
         {
-            characterController.Move(transform.forward * movementSpeed * Time.deltaTime*speedMultiplyer);
+
+            Vector3 lookDir = camera.transform.forward;
+            lookDir.y = transform.forward.y;
+            
+            transform.forward = lookDir;
+            characterController.Move(transform.forward * movementSpeed * Time.deltaTime * speedMultiplyer);
+
         }
         else if (verticalInput < -0.1)
         {
-            characterController.Move(transform.forward * -movementSpeed * Time.deltaTime* speedMultiplyer);
+
+            Vector3 lookDir = camera.transform.forward;
+            lookDir.y = transform.forward.y;
+
+            transform.forward = lookDir;
+
+            characterController.Move(transform.forward * -movementSpeed * Time.deltaTime * speedMultiplyer);
+
+        }
+        if (horizontalInput > 0.1)
+        {
+            characterController.Move(camera.transform.right * movementSpeed * Time.deltaTime * speedMultiplyer);
+        }
+        else if (horizontalInput < -0.1)
+        {
+            characterController.Move(camera.transform.right * -movementSpeed * Time.deltaTime * speedMultiplyer);
         }
     }
 
     private void rotateChC()
     {
-        if (horizontalInput > 0.1)
-        {
-            transform.Rotate(new Vector3(0f, rotationSpeed, 0f), Space.Self);
-        }
-        else if (horizontalInput < -0.1)
-        {
-            transform.Rotate(new Vector3(0f, -rotationSpeed, 0f), Space.Self);
-        }
+        
     }
 
     

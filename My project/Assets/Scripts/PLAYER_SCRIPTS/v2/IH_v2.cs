@@ -10,6 +10,10 @@ public class IH_v2 : MonoBehaviour
     private InputAction move;
     private InputAction attack;
     private InputAction dash;
+    
+    private InputAction mouseMovement;
+    public Vector2 mouseDelta;
+
     public PC_v2 playerController;
 
     public MissionsManager missionsManager;
@@ -39,9 +43,9 @@ public class IH_v2 : MonoBehaviour
         {
             playerController.setMovementValues(movement);
         }
-        
-            
-       
+
+        mouseDelta = mouseMovement.ReadValue<Vector2>();
+
     }
 
     void callAttack1(InputAction.CallbackContext obj)
@@ -85,7 +89,9 @@ public class IH_v2 : MonoBehaviour
         playerInputActions.Player.Dash.performed += callDash;
         playerInputActions.Player.Dash.Enable();
 
-        
+        mouseMovement = playerInputActions.Player.cameraRotation;
+        mouseMovement.Enable();
+
     }
 
     private void OnDisable()
@@ -94,7 +100,7 @@ public class IH_v2 : MonoBehaviour
         playerInputActions.Player.Attack.Disable();
         playerInputActions.Player.Attack1.Disable();
         playerInputActions.Player.Dash.Disable();
-        
+        mouseMovement.Disable();
     }
 
 

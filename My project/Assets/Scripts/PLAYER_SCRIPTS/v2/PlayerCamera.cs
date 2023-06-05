@@ -4,61 +4,61 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerCamera : MonoBehaviour
 {
+    [SerializeField]
+    public Transform target;
 
-    //private InputActions playerInputActions;
-    //public InputAction mouseMovement;
-    //float orbitSpeed = 5f;
-    //public Transform target;
 
-    //private Animator animator;
-    //public CharacterController characterController;
-    //private float ySpeed;
-    //private float originalStepOffset;
-    //private float? lastGroundedTime;
-    //private float? jumpButtonPressedTime;
+    public CharacterController characterController;
 
-    //Vector2 mouseDelta;
 
+    public IH_v2 inputHandler;
+
+
+    Vector2 mouseDelta;
+    float rotY;
+    float rotX;
+
+    float distanceFromTarget;
+    float sensitivity;
     //// Start is called before the first frame update
-    //void Start()
-    //{       
-    //    animator = GetComponent<Animator>();
-    //    originalStepOffset = characterController.stepOffset;
-    //    target = characterController.transform;
-    //}
+    void Start()
+    {
+        sensitivity = 0.1f;
+        distanceFromTarget = 10;
+        target = characterController.transform;
+    }
 
     //// Update is called once per frame
-    //void Update()
-    //{
-    //    //mouseDelta = mouseMovement.ReadValue<Vector2>();
-    //    //float horizontalInput = mouseDelta.x;
-    //    //float verticalInput = mouseDelta.y;
+    void Update()
+    {
+        mouseDelta = inputHandler.mouseDelta*sensitivity;
+        
+        rotY +=  mouseDelta.x;
+        rotX += -mouseDelta.y;
 
-    //    //// Calculate the desired camera position
-    //    //Vector3 desiredPosition = (transform.position - target.position).normalized;
+        //rotX *= sensitivity;
+        //rotY *= sensitivity;
 
-    //    //// Rotate the camera around the target point
-    //    //transform.RotateAround(target.position, Vector3.up, orbitSpeed * Time.deltaTime);
+        rotX = Mathf.Clamp(rotX, 0, 60);
 
-    //    //// Adjust the camera position to maintain the desired distance from the target
-    //    //transform.position = target.position + desiredPosition * Vector3.Distance(transform.position, target.position);
+        transform.localEulerAngles = new Vector3(rotX, rotY, 0);
 
-    //    //// Make the camera look at the target point
-    //    //transform.LookAt(target);
-    //}
+        transform.position = target.position - transform.forward*distanceFromTarget;
 
 
-    //private void OnEnable()
-    //{
-    //    //camera
-    //    mouseMovement = playerInputActions.Player.cameraRotation;
-    //    mouseMovement.Enable();
-    //}
+    }
 
-    //private void OnDisable()
-    //{
-    //    mouseMovement.Disable();
-    //}
+
+    private void OnEnable()
+    {
+       
+       
+    }
+
+    private void OnDisable()
+    {
+       
+    }
 
 }
 
