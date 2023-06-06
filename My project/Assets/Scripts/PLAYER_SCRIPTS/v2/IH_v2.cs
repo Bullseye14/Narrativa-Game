@@ -18,6 +18,7 @@ public class IH_v2 : MonoBehaviour
     public AH_v2 animatorHandler;
 
     public MissionsManager missionsManager;
+    float lastAttack1;
     private void Awake()
     {
         playerInputActions = new InputActions();
@@ -54,8 +55,9 @@ public class IH_v2 : MonoBehaviour
     {
         if (missionsManager.playerCanMove)
         {
-            if (!animatorHandler.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+            if (!animatorHandler.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1")&&Time.time-lastAttack1 > 3f)
             {
+                lastAttack1 = Time.time;
                 playerController.setAttackValues("attackorder1", 30);
             }
 

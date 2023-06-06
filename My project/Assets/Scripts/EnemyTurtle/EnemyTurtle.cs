@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySlime : MonoBehaviour
+public class EnemyTurtle : MonoBehaviour
 {
     public GameObject player;
     public PC_v2 playerScript;
@@ -25,7 +25,7 @@ public class EnemySlime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         rb = gameObject.GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PC_v2>();
@@ -71,7 +71,7 @@ public class EnemySlime : MonoBehaviour
                     {
                         animator.SetBool("taunt", false);
                     }
-                    if(distance > 20)
+                    if (distance > 20)
                     {
                         animator.SetBool("suspect", false);
                     }
@@ -97,14 +97,7 @@ public class EnemySlime : MonoBehaviour
                         }
 
                     }
-                    //else if (Time.time - lastAttackTime > 0.3f && Time.time - lastAttackTime < 1.0f)
-                    //{
-                    //    attackCollider.enabled = true;
-                    //}
-                    //else if (Time.time - lastAttackTime > 1.0f)
-                    //{
-                    //    attackCollider.enabled = false;
-                    //}
+                    
                 }
             }
             else if (monsterHealth <= 0)
@@ -112,7 +105,7 @@ public class EnemySlime : MonoBehaviour
                 Die();
             }
         }
-        
+
     }
 
     void disableAttackCollider()
@@ -143,7 +136,7 @@ public class EnemySlime : MonoBehaviour
     {
         monsterHealth -= damage;
         animator.SetTrigger("getHit");
-        Debug.Log("Enemy Slime damage get: " + damage.ToString());
+        Debug.Log("Enemy Turtle damage get: " + damage.ToString());
     }
 
     void Die()
@@ -167,7 +160,6 @@ public class EnemySlime : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-
             getHit(other.gameObject.GetComponent<PC_v2>().attackDamage);
 
         }

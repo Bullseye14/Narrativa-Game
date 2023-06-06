@@ -26,7 +26,7 @@ public class PC_v2 : MonoBehaviour
     float DashCallTime;
     float speedMultiplyer;
 
-    float playerHealth;
+    public float playerHealth;
     bool dead;
     public float attackDamage;
 
@@ -160,7 +160,7 @@ public class PC_v2 : MonoBehaviour
     void takeDamage(float damage)
     {
         playerHealth -= damage;
-        Debug.Log(playerHealth.ToString());
+        Debug.Log("currPlayerHealth"+playerHealth.ToString());
     }
 
     void disableBoxCollider()
@@ -192,9 +192,14 @@ public class PC_v2 : MonoBehaviour
     {
         if(other.gameObject.tag == "enemySlime")
         { 
-            takeDamage(other.gameObject.GetComponent<enemyDummie>().attackDamage);
+            takeDamage(other.gameObject.GetComponent<EnemySlime>().attackDamage);
         }
-       
+
+        if (other.gameObject.tag == "enemyTurtle")
+        {
+            takeDamage(other.gameObject.GetComponent<EnemyTurtle>().attackDamage);
+        }
+
     }
 
 }
