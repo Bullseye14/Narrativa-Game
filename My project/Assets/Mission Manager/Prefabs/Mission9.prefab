@@ -55,7 +55,11 @@ MonoBehaviour:
   type: 1
   missionManager: {fileID: 0}
   fixedName: 
-  spawnObjects: []
+  spawnObjectsList:
+  - {fileID: 3785155122192863425, guid: 63acbd2d19540534a9793fd81113fecb, type: 3}
+  objectsManagerList: []
+  objectInteractable: {fileID: 0}
+  finishedMission: 0
 --- !u!135 &1866130536046759206
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ public class MissionsManager : MonoBehaviour
     public int moiraDecisions = 0;
 
     public bool playerCanMove = true;
+    public bool doingMission = false;
 
     public InputAction inputActivateMission;
 
@@ -93,7 +94,7 @@ public class MissionsManager : MonoBehaviour
         }
     }
 
-    private void NewActiveMission(int length)
+    public void NewActiveMission(int length)
     {
         if (usedMissions.Count < 6)
         {
@@ -111,6 +112,7 @@ public class MissionsManager : MonoBehaviour
 
         else
         {
+            activeMission = null;
             // S'acaba el joc ja 
             // Aquí s'ha de posar un fade black, una animació o algo i que surti la pantalla final amb el score i un play again o algo
         }
@@ -118,17 +120,22 @@ public class MissionsManager : MonoBehaviour
 
     public void SelectedAnswer(int value)
     {
+        playerCanMove = true;
+        doingMission = true;
+
+        activeMission.GetComponent<MissionBehaviour>().MissionSelection(value);
+    }
+
+    public void MissionResult(int value, int diff)
+    {
         // State 2 --> Missió feta
         interactingMission.GetComponent<MissionBehaviour>().missionState = 2;
-
-        // Dificultat de la missió
-        int diff = interactingMission.GetComponent<MissionBehaviour>().dificultat;
 
         // Si hem triat la decisió esquerra
         if (value == 0)
         {
             // I era fàcil
-            if(diff == 0)
+            if (diff == 0)
             {
                 moralDecisions += 1;
                 moiraDecisions += 1;
@@ -159,18 +166,65 @@ public class MissionsManager : MonoBehaviour
 
         NewActiveMission(activateMissions.Count);
         playerCanMove = true;
+        doingMission = false;
     }
 
     private void Update()
     {
-        if (interactingMission != null && playerCanMove)
-            F.SetActive(true);
-        else F.SetActive(false);
+        MissionBehaviour activeMissionBeh;
 
-        if (interactingMission != null && inputActivateMission.ReadValue<float>() > 0.3 && playerCanMove)
+        if (activeMission != null)
+            activeMissionBeh = activeMission.GetComponent<MissionBehaviour>();
+
+        else activeMissionBeh = null;
+
+        if (!doingMission)
         {
-            playerCanMove = false;
-            ActivateUI();
+            if (interactingMission != null && playerCanMove)
+            {
+                F.SetActive(true);
+
+                if (inputActivateMission.ReadValue<float>() > 0.3)
+                {
+                    playerCanMove = false;
+                    ActivateUI();
+                }
+            }
+            else F.SetActive(false);
+
+        }
+        else if (doingMission)
+        {
+            if (activeMissionBeh != null)
+            {
+                if (activeMissionBeh.objectInteractable != null && !activeMissionBeh.finishedMission)
+                {
+                    F.SetActive(true);
+
+                    if (inputActivateMission.ReadValue<float>() > 0.3)
+                    {
+                        activeMissionBeh.PickObject();
+                    }
+
+                }
+                else if (activeMissionBeh.finishedMission && interactingMission != null)
+                {
+                    F.SetActive(true);
+
+                    if (inputActivateMission.ReadValue<float>() > 0.3)
+                    {
+                        if (activeMissionBeh.dificultat == 0) activeMissionBeh.chosen = 0;
+                        else activeMissionBeh.chosen = 1;
+
+                        doingMission = false;
+                        activeMissionBeh.missionState = 2;
+                        playerCanMove = false;
+
+                        ActivateUI();
+                    }
+                }
+                else F.SetActive(false);
+            }            
         }
 
         if (playerCanMove) countersGO.SetActive(true);

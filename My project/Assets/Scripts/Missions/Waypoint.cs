@@ -25,10 +25,9 @@ public class Waypoint : MonoBehaviour
     {
         target = GetTarget();
 
-        if (target != null && manager.playerCanMove)
-        {
-            UpdateTarget(target);
-        }
+        if (target != null && manager.playerCanMove && !manager.doingMission) UpdateTarget(target);
+
+        else if (target != null && manager.doingMission && manager.activeMission.GetComponent<MissionBehaviour>().finishedMission) UpdateTarget(target);
 
         else img.enabled = false;
     }
@@ -61,6 +60,9 @@ public class Waypoint : MonoBehaviour
 
     public Transform GetTarget()
     {
-        return manager.activeMission.transform;
+        if (manager.activeMission != null)
+            return manager.activeMission.transform;
+
+        else return null;
     }
 }

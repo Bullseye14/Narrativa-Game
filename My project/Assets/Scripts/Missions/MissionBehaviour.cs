@@ -25,13 +25,26 @@ public class MissionBehaviour : MonoBehaviour
 
     public string fixedName;
 
-    public List<GameObject> spawnObjects;
+    public List<GameObject> spawnObjectsList;
+    public List<GameObject> objectsManagerList;
+
+    public GameObject objectInteractable;
+
+    public bool finishedMission = false;
 
     private void Start()
     {
         missionManager = GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
 
         fixedName = FixName();
+    }
+
+    private void Update()
+    {
+        if(objectsManagerList.Count == 0)
+        {
+            finishedMission = true;
+        }
     }
 
     // Perque el path sino busca Mission7(Clone), treiem el (Clone) i ho troba bé
@@ -86,21 +99,49 @@ public class MissionBehaviour : MonoBehaviour
             return path + "Post2/" + fixedName + ".txt";
     }
 
-    public void MissionTextFinished()
+    public void MissionSelection(int mDecision)
     {
-        switch (type)
+        finishedMission = false;
+
+        if ((dificultat == 0 && mDecision == 0) || (dificultat == 1 && mDecision == 1))
         {
-            case 0:
-                missionManager.DecisionTime();
-                break;
+            switch (type)
+            {
+                case 0:
+                    missionManager.MissionResult(mDecision, dificultat);
+                    break;
 
-            case 1:
-                missionManager.DecisionTime();
-                break;
+                case 1:
+                    SpawnObjects();
+                    break;
 
-            case 2:
-                missionManager.DecisionTime();
-                break;
+                case 2:
+                    SpawnObjects();
+                    break;
+            }
+        }
+        else missionManager.MissionResult(mDecision, dificultat);
+    }
+
+    public void SpawnObjects()
+    {
+        for (int i = 0; i < spawnObjectsList.Count; ++i)
+        {
+            GameObject obj = Instantiate(spawnObjectsList[i], this.gameObject.transform);
+            objectsManagerList.Add(obj);
+        }
+    }
+
+    public void PickObject()
+    {
+        for (int i = 0; i < objectsManagerList.Count; ++i)
+        {
+            if (objectInteractable.name == objectsManagerList[i].name)
+            {
+                objectsManagerList[i].SetActive(false);
+                objectsManagerList.RemoveAt(i);
+                Destroy(objectInteractable);
+            }
         }
     }
 
