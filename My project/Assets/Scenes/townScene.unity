@@ -29060,6 +29060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd866cdfc373c54394e2c5100958ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finishedGame: 0
   missions:
   - {fileID: 7838414438635424614, guid: 22c28cff02dfd204d97e99c5a84e9880, type: 3}
   - {fileID: 8659668059708639871, guid: 71478e7483d558d4e8f896a018d15fe8, type: 3}
