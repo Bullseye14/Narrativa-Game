@@ -43,7 +43,7 @@ public class PlayerCamera : MonoBehaviour
             //rotX *= sensitivity;
             //rotY *= sensitivity;
 
-            rotX = Mathf.Clamp(rotX, 0, 60);
+            rotX = Mathf.Clamp(rotX, 10, 60);
 
             transform.localEulerAngles = new Vector3(rotX, rotY, 0);
 

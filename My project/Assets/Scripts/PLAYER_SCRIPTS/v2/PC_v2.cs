@@ -83,14 +83,14 @@ public class PC_v2 : MonoBehaviour
         horizontalInput = moveVec.x;
         verticalInput = moveVec.y;
        
-        if(verticalInput != 0)
-        {
+        //if(verticalInput != 0)
+        //{
             animatorHandler.setAnimatorMovementValues(moveVec.magnitude);
-        }
-        else
-        {
-            animatorHandler.setAnimatorMovementValues(0);
-        }
+        //}
+        //else
+        //{
+        //    animatorHandler.setAnimatorMovementValues(0);
+        //}
         
     }
 
