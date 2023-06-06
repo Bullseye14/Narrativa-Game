@@ -73,7 +73,7 @@ public class TextAnim : MonoBehaviour
 
             if (missionsManager.interactingMission.GetComponent<MissionBehaviour>().missionState == 1)
             {
-                missionsManager.DecisionTime();
+                missionsManager.interactingMission.GetComponent<MissionBehaviour>().MissionTextFinished();
             }
         }
     }

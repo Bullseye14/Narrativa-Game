@@ -108,6 +108,12 @@ public class MissionsManager : MonoBehaviour
 
             //activateMissions.RemoveAt(index);
         }
+
+        else
+        {
+            // S'acaba el joc ja 
+            // Aquí s'ha de posar un fade black, una animació o algo i que surti la pantalla final amb el score i un play again o algo
+        }
     }
 
     public void SelectedAnswer(int value)

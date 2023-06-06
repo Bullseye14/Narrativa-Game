@@ -52,8 +52,10 @@ MonoBehaviour:
   missionState: 0
   activeMission: 0
   chosen: 0
+  type: 2
   missionManager: {fileID: 0}
   fixedName: 
+  spawnObjects: []
 --- !u!135 &3217231082437295053
 SphereCollider:
   m_ObjectHideFlags: 0

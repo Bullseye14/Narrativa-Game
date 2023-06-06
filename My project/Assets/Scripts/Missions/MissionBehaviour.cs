@@ -18,9 +18,14 @@ public class MissionBehaviour : MonoBehaviour
     // Si és 0, vol dir que hem escollit l'opció de les Moires, si és 1, l'altra
     public int chosen;
 
+    // 0 si és decisió només, 1 si és buscar objectes, 2 si és lluita
+    public int type;
+
     public MissionsManager missionManager;
 
     public string fixedName;
+
+    public List<GameObject> spawnObjects;
 
     private void Start()
     {
@@ -79,6 +84,24 @@ public class MissionBehaviour : MonoBehaviour
 
         else
             return path + "Post2/" + fixedName + ".txt";
+    }
+
+    public void MissionTextFinished()
+    {
+        switch (type)
+        {
+            case 0:
+                missionManager.DecisionTime();
+                break;
+
+            case 1:
+                missionManager.DecisionTime();
+                break;
+
+            case 2:
+                missionManager.DecisionTime();
+                break;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
