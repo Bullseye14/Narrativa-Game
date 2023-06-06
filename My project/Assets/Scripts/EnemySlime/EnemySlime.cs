@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyDummie : MonoBehaviour
+public class EnemySlime : MonoBehaviour
 {
-
     public GameObject player;
     public Transform playerPos;
     public Rigidbody rb;
     Collider attackCollider;
-   
+
     public Animator animator;
 
     public float movementSpeed;
@@ -41,14 +40,14 @@ public class enemyDummie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(monsterHealth > 0)
+        if (monsterHealth > 0)
         {
             playerPos = player.transform;
 
             if (!playerSeen)
             {
                 float distance = Vector3.Distance(this.transform.position, playerPos.position);
-                
+
                 if (distance < 20 && distance > 15)
                 {
                     animator.SetBool("suspect", true);
@@ -95,7 +94,7 @@ public class enemyDummie : MonoBehaviour
                 }
             }
         }
-        else if(monsterHealth <= 0)
+        else if (monsterHealth <= 0)
         {
             Die();
         }
@@ -106,7 +105,7 @@ public class enemyDummie : MonoBehaviour
     {
         float attack = Random.Range(0f, 10f);
 
-        if(attack > 4)
+        if (attack > 4)
         {
             animator.SetTrigger("attack2");
         }
@@ -128,7 +127,7 @@ public class enemyDummie : MonoBehaviour
     void Die()
     {
         animator.SetBool("dead", true);
-        
+
         rb.isKinematic = true;
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)//dead ended
         {

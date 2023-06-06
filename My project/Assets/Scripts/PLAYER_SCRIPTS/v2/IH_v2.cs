@@ -15,11 +15,13 @@ public class IH_v2 : MonoBehaviour
     public Vector2 mouseDelta;
 
     public PC_v2 playerController;
+    public AH_v2 animatorHandler;
 
     public MissionsManager missionsManager;
     private void Awake()
     {
         playerInputActions = new InputActions();
+        animatorHandler = GetComponent<AH_v2>();
         missionsManager =  GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
     }
 
@@ -52,7 +54,11 @@ public class IH_v2 : MonoBehaviour
     {
         if (missionsManager.playerCanMove)
         {
-            playerController.setAttackValues("attackorder1");
+            if (!animatorHandler.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+            {
+                playerController.setAttackValues("attackorder1", 30);
+            }
+
         }
     }
 
@@ -60,11 +66,13 @@ public class IH_v2 : MonoBehaviour
     {
         if (missionsManager.playerCanMove)
         {
-            float attack = Random.Range(0f, 10f);
-            if(attack < 7) {
-                playerController.setAttackValues("attackorder");
+            if (!animatorHandler.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                playerController.setAttackValues("attackorder", 20);
             }
-           
+
+
+
         }
     }
 

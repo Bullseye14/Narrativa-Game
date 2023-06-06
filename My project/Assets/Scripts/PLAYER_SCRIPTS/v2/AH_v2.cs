@@ -14,6 +14,7 @@ public class AH_v2 : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+
     }
     private void FixedUpdate()
     {

@@ -20,12 +20,15 @@ public class PC_v2 : MonoBehaviour
     Rigidbody rb;
     Vector3 movementForward;
     public bool attacking;
+    BoxCollider boxCollider;
+    SphereCollider sphereCollider;
 
     float DashCallTime;
     float speedMultiplyer;
 
     float playerHealth;
     bool dead;
+    public float attackDamage;
 
 
     void Start()
@@ -33,10 +36,12 @@ public class PC_v2 : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         animatorHandler = GetComponent<AH_v2>();
-
+        boxCollider = GetComponent<BoxCollider>();
+        sphereCollider = GetComponent<SphereCollider>();
         movementSpeed = 10f;
         rotationSpeed = 6f;
         attacking = false;
+        attackDamage = 0;
         DashCallTime = 0;
         speedMultiplyer = 1f;
 
@@ -89,10 +94,19 @@ public class PC_v2 : MonoBehaviour
         
     }
 
-    public void setAttackValues(string str)
+    public void setAttackValues(string str,float damage)
     {
         animatorHandler.playOneTimeAnimation(str);
         attacking = true;
+        attackDamage = damage;
+        if(str == "attackorder")
+        {
+            attack0();
+        }else if(str == "attackorder1")
+        {
+            attack1();
+        }
+        
     }
 
     public void DashNow()
@@ -149,6 +163,26 @@ public class PC_v2 : MonoBehaviour
         Debug.Log(playerHealth.ToString());
     }
 
+    void disableBoxCollider()
+    {
+        boxCollider.enabled = false;
+    }
+    void disableSphereCollider()
+    {
+        sphereCollider.enabled = false;
+    }
+    void attack0()
+    {
+        boxCollider.enabled = true;
+        Invoke("disableBoxCollider", 0.3f);
+    }
+
+    void attack1()
+    {
+        sphereCollider.enabled = true;
+        Invoke("disableSphereCollider", 0.3f);
+    }
+
     void Die()
     {
         dead = true;
@@ -156,11 +190,9 @@ public class PC_v2 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "enemy0")
-        {
-            
-            takeDamage(30);
-
+        if(other.gameObject.tag == "enemySlime")
+        { 
+            takeDamage(other.gameObject.GetComponent<enemyDummie>().attackDamage);
         }
        
     }
