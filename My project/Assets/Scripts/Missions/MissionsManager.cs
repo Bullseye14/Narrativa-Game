@@ -36,9 +36,13 @@ public class MissionsManager : MonoBehaviour
 
     public int index;
 
+    public GameObject F;
+
     // Start is called before the first frame update
     void Start()
     {
+        F.SetActive(false);
+
         RandomChosenMissions();
 
         NewActiveMission(activateMissions.Count);
@@ -153,6 +157,10 @@ public class MissionsManager : MonoBehaviour
 
     private void Update()
     {
+        if (interactingMission != null)
+            F.SetActive(true);
+        else F.SetActive(false);
+
         if (interactingMission != null && inputActivateMission.ReadValue<float>() > 0.3 && playerCanMove)
         {
             playerCanMove = false;
