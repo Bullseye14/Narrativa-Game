@@ -1,2 +1,2 @@
-Ayudar al hombre
-Ignorar al hombre
+Help the man
+Ignore the man
