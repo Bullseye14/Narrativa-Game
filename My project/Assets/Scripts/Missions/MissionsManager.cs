@@ -2,35 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class MissionsManager : MonoBehaviour
 {
-    public int moralDecisions = 0;
-    public int moiraDecisions = 0;
 
     // Llista amb totes les possibles missions
     public List<GameObject> missions;
 
-    public List<GameObject> playableMissions;
+    public GameObject countersGO;
+    public TMP_Text fragments;
+    //public TMP_Text moral;
+
+    public GameObject decisionManager;
 
     public GameObject missionsUI;
 
     public GameObject interactingMission;
+    public GameObject activeMission;
 
-    public InputAction inputActivateMission;
+    public int moralDecisions = 0;
+    public int moiraDecisions = 0;
 
     public bool playerCanMove = true;
 
-    public List<int> chosenNumbers;
+    public InputAction inputActivateMission;
 
-    public GameObject decisionManager;
+    public List<int> chosenNumbers;
+    public List<int> activateMissions;
+    public List<GameObject> playableMissions;
+
+    public List<int> usedMissions;
+
+    public int index;
 
     // Start is called before the first frame update
     void Start()
     {
         RandomChosenMissions();
 
-        NewActiveMission(chosenNumbers.Count);
+        NewActiveMission(activateMissions.Count);
     }
 
     private void RandomChosenMissions()
@@ -71,25 +82,32 @@ public class MissionsManager : MonoBehaviour
             playableMissions.Add(newMission);
         }
 
-        for (int i = 0; i < chosenNumbers.Count; ++i)
+        for (int i = 0; i < playableMissions.Count; ++i)
         {
             playableMissions[i].GetComponent<MissionBehaviour>().missionState = 0;
+            activateMissions.Add(i);
         }
     }
 
     private void NewActiveMission(int length)
     {
-        int index = Random.Range(0, length);
+        if (usedMissions.Count < 6)
+        {
+            while (usedMissions.Contains(index))
+            {
+                index = Random.Range(0, length);
+            }
 
-        playableMissions[index].GetComponent<MissionBehaviour>().missionState = 1;
+            usedMissions.Add(index);
+            playableMissions[index].GetComponent<MissionBehaviour>().missionState = 1;
+            activeMission = playableMissions[index];
 
-        chosenNumbers.RemoveAt(index);
+            //activateMissions.RemoveAt(index);
+        }
     }
 
     public void SelectedAnswer(int value)
     {
-        playerCanMove = true;
-
         // State 2 --> Missió feta
         interactingMission.GetComponent<MissionBehaviour>().missionState = 2;
 
@@ -129,7 +147,8 @@ public class MissionsManager : MonoBehaviour
             interactingMission.GetComponent<MissionBehaviour>().chosen = 1;
         }
 
-        NewActiveMission(chosenNumbers.Count);
+        NewActiveMission(activateMissions.Count);
+        playerCanMove = true;
     }
 
     private void Update()
@@ -139,6 +158,12 @@ public class MissionsManager : MonoBehaviour
             playerCanMove = false;
             ActivateUI();
         }
+
+        if (playerCanMove) countersGO.SetActive(true);
+        else countersGO.SetActive(false);
+
+        fragments.text = moiraDecisions.ToString();
+        //moral.text = moralDecisions.ToString();
     }
 
     private void ActivateUI()

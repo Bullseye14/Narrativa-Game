@@ -26,6 +26,9 @@ public class DecisionManager : MonoBehaviour
 
     public MissionsManager missionsManager;
 
+    public GameObject F1;
+    public GameObject F2;
+
     public void Start()
     {
         arrow.GetComponent<ArrowMovement>().SetArrowToIni();
@@ -79,6 +82,9 @@ public class DecisionManager : MonoBehaviour
         // Decisió de la dreta seleccionada
         if (direction < -0.1)
         {
+            F2.SetActive(true);
+            F1.SetActive(false);
+
             rightHovered = true;
             leftHovered = false;
 
@@ -89,6 +95,9 @@ public class DecisionManager : MonoBehaviour
         // Decisió de l'esquerra seleccionada
         else if (direction > 0.1)
         {
+            F2.SetActive(false);
+            F1.SetActive(true);
+
             rightHovered = false;
             leftHovered = true;
 
@@ -99,6 +108,9 @@ public class DecisionManager : MonoBehaviour
         // Fletxa al mig
         else
         {
+            F2.SetActive(false);
+            F1.SetActive(false);
+
             rightHovered = false;
             leftHovered = false;
 

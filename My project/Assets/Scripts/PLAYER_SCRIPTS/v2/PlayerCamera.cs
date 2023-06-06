@@ -7,12 +7,9 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     public Transform target;
 
-
     public CharacterController characterController;
 
-
     public IH_v2 inputHandler;
-
 
     Vector2 mouseDelta;
     float rotY;
@@ -20,32 +17,38 @@ public class PlayerCamera : MonoBehaviour
 
     float distanceFromTarget;
     float sensitivity;
+
+    public MissionsManager manager;
+
     //// Start is called before the first frame update
     void Start()
     {
         sensitivity = 0.1f;
         distanceFromTarget = 10;
         target = characterController.transform;
+
+        manager = GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
     }
 
     //// Update is called once per frame
     void Update()
     {
-        mouseDelta = inputHandler.mouseDelta*sensitivity;
-        
-        rotY +=  mouseDelta.x;
-        rotX += -mouseDelta.y;
+        if(manager.playerCanMove)
+        {
+            mouseDelta = inputHandler.mouseDelta * sensitivity;
 
-        //rotX *= sensitivity;
-        //rotY *= sensitivity;
+            rotY += mouseDelta.x;
+            rotX += -mouseDelta.y;
 
-        rotX = Mathf.Clamp(rotX, 0, 60);
+            //rotX *= sensitivity;
+            //rotY *= sensitivity;
 
-        transform.localEulerAngles = new Vector3(rotX, rotY, 0);
+            rotX = Mathf.Clamp(rotX, 0, 60);
 
-        transform.position = target.position - transform.forward*distanceFromTarget;
+            transform.localEulerAngles = new Vector3(rotX, rotY, 0);
 
-
+            transform.position = target.position - transform.forward * distanceFromTarget;
+        }
     }
 
 

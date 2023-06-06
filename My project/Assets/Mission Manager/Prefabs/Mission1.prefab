@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2639323702650254842}
   - component: {fileID: 3317405799613056803}
-  - component: {fileID: 3987023591959797920}
   - component: {fileID: 5612551485192726422}
+  - component: {fileID: 4712250028128953993}
   m_Layer: 0
   m_Name: Mission1
   m_TagString: Untagged
@@ -26,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7838414438635424614}
-  m_LocalRotation: {x: 0, y: -0.9368218, z: 0, w: 0.3498069}
-  m_LocalPosition: {x: 2.13, y: 45.407, z: 7.209999}
+  m_LocalRotation: {x: -0, y: -0.6100995, z: -0, w: -0.79232484}
+  m_LocalPosition: {x: -20.93, y: 45.407, z: 2.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 543450653542618341}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -139.049, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -284.807, z: 0}
 --- !u!114 &3317405799613056803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,22 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dificultat: 0
-  interactable: 1
   missionState: 0
   activeMission: 0
---- !u!135 &3987023591959797920
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838414438635424614}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  chosen: 0
+  missionManager: {fileID: 0}
+  fixedName: 
 --- !u!135 &5612551485192726422
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -76,8 +65,21 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &4712250028128953993
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838414438635424614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.18, y: 1.94, z: 1.12}
+  m_Center: {x: 0, y: 1.08, z: 0}
 --- !u!1001 &199357198
 PrefabInstance:
   m_ObjectHideFlags: 0

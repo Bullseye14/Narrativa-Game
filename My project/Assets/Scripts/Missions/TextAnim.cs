@@ -33,9 +33,13 @@ public class TextAnim : MonoBehaviour
 
     public MissionsManager missionsManager;
 
+    public GameObject enter;
+
     // Start is called before the first frame update
     void Start()
     {
+        enter.SetActive(false);
+
         GetNewText();
     }
 
@@ -62,6 +66,7 @@ public class TextAnim : MonoBehaviour
             i = 0;
             _textMeshPro.text = "";
 
+            enter.SetActive(false);
             this.gameObject.SetActive(false);
 
             missionsManager.playerCanMove = true;
@@ -77,12 +82,16 @@ public class TextAnim : MonoBehaviour
     {
         if (waitingForNext)
         {
+            enter.SetActive(true);
+
             if (nextButton.ReadValue<float>() > 0.3)
                 EndCheck();
         }
 
         else
         {
+            enter.SetActive(false);
+
             if (accelerateButton.ReadValue<float>() > 0.3)
                 accelerating = true;
 
