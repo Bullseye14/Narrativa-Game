@@ -142,8 +142,11 @@ public class EnemySlime : MonoBehaviour
     void getHit(float damage)
     {
         monsterHealth -= damage;
-        animator.SetTrigger("getHit");
-        Debug.Log("Enemy Slime damage get: " + damage.ToString());
+        if(damage != 0)
+        {
+            animator.SetTrigger("getHit");
+        }
+       
     }
 
     void Die()
@@ -167,9 +170,7 @@ public class EnemySlime : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-
             getHit(other.gameObject.GetComponent<PC_v2>().attackDamage);
-
         }
 
     }

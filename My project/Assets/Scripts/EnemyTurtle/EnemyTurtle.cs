@@ -135,8 +135,10 @@ public class EnemyTurtle : MonoBehaviour
     void getHit(float damage)
     {
         monsterHealth -= damage;
-        animator.SetTrigger("getHit");
-        Debug.Log("Enemy Turtle damage get: " + damage.ToString());
+        if (damage != 0)
+        {
+            animator.SetTrigger("getHit");
+        }
     }
 
     void Die()
