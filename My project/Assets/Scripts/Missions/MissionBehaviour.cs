@@ -145,6 +145,16 @@ public class MissionBehaviour : MonoBehaviour
         }
     }
 
+    public void KillEnemy(string enemyName)
+    {
+        for (int i = 0; i < objectsManagerList.Count; ++i)
+        {
+            if (enemyName == objectsManagerList[i].name)
+            {
+                objectsManagerList.RemoveAt(i);
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         missionManager.interactingMission = this.gameObject;

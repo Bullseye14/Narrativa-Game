@@ -6,7 +6,7 @@ using TMPro;
 
 public class MissionsManager : MonoBehaviour
 {
-
+    public bool finishedGame = false;
     // Llista amb totes les possibles missions
     public List<GameObject> missions;
 
@@ -112,7 +112,7 @@ public class MissionsManager : MonoBehaviour
 
         else
         {
-            activeMission = null;
+            finishedGame = true;
             // S'acaba el joc ja 
             // Aquí s'ha de posar un fade black, una animació o algo i que surti la pantalla final amb el score i un play again o algo
         }

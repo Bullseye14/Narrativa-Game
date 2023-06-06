@@ -6,6 +6,7 @@ public class EnemyTurtle : MonoBehaviour
 {
     [SerializeField] private AudioClip attack2AudioClip;
 
+    public MissionsManager missionManager;
 
     public GameObject player;
     public PC_v2 playerScript;
@@ -24,7 +25,7 @@ public class EnemyTurtle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        missionManager = GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
         rb = gameObject.GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PC_v2>();
@@ -144,6 +145,8 @@ public class EnemyTurtle : MonoBehaviour
     void Die()
     {
         animator.SetBool("dead", true);
+
+        missionManager.activeMission.GetComponent<MissionBehaviour>().KillEnemy(this.gameObject.name);
 
         rb.isKinematic = true;
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)//dead ended

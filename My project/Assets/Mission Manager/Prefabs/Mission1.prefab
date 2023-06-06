@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7838414438635424614}
-  m_LocalRotation: {x: -0, y: -0.6100995, z: -0, w: -0.79232484}
+  m_LocalRotation: {x: -0, y: -0.61009675, z: 0, w: -0.7923269}
   m_LocalPosition: {x: -20.93, y: 45.407, z: 2.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -55,8 +55,14 @@ MonoBehaviour:
   type: 2
   missionManager: {fileID: 0}
   fixedName: 
-  spawnObjectsList: []
+  spawnObjectsList:
+  - {fileID: 7767065055315010812, guid: 7fb6aec7977bf6f4db62fd24ac89e634, type: 3}
+  - {fileID: 2763676489546336840, guid: 24f472b66b1663c4a9ff6d91296f634a, type: 3}
+  - {fileID: 6551839182684117172, guid: 67dd2ba5d9135434a84adaebf77c59e3, type: 3}
+  - {fileID: 2387500171970884720, guid: 25fd9c85bbe077049b4de595649a3c91, type: 3}
   objectsManagerList: []
+  objectInteractable: {fileID: 0}
+  finishedMission: 0
 --- !u!135 &5612551485192726422
 SphereCollider:
   m_ObjectHideFlags: 0
