@@ -157,7 +157,7 @@ public class MissionsManager : MonoBehaviour
 
     private void Update()
     {
-        if (interactingMission != null)
+        if (interactingMission != null && playerCanMove)
             F.SetActive(true);
         else F.SetActive(false);
 
