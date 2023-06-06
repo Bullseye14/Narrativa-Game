@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class EnemyTurtle : MonoBehaviour
 {
+    [SerializeField] private AudioClip attack2AudioClip;
+
+
     public GameObject player;
     public PC_v2 playerScript;
     public Transform playerPos;
     public Rigidbody rb;
     Collider attackCollider;
-
     public Animator animator;
 
     public float movementSpeed;
-
     public bool playerSeen;
 
     private float lastAttackTime;
-
     public float monsterHealth;
-
     public float attackDamage;
     public float attackDelay;
     // Start is called before the first frame update
@@ -119,6 +118,7 @@ public class EnemyTurtle : MonoBehaviour
         if (attack > 4)
         {
             animator.SetTrigger("attack2");
+            audioManager.instance.PlaySound(attack2AudioClip);
             attackDamage = 15;
         }
         else

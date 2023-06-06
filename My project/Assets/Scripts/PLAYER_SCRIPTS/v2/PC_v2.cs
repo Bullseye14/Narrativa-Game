@@ -166,10 +166,12 @@ public class PC_v2 : MonoBehaviour
     void disableBoxCollider()
     {
         boxCollider.enabled = false;
+        attackDamage = 0;
     }
     void disableSphereCollider()
     {
         sphereCollider.enabled = false;
+        attackDamage = 0;
     }
     void attack0()
     {
