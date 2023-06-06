@@ -5,7 +5,7 @@ using UnityEngine;
 public class AH_v2 : MonoBehaviour
 {
 
-    Animator animator;
+    public Animator animator;
     AnimatorClipInfo[] currentClipInfo;
     public bool attacking;
 
@@ -32,4 +32,8 @@ public class AH_v2 : MonoBehaviour
         
     }
     
+    public void setAnimationBool(string str,bool boolean)
+    {
+        animator.SetBool(str, boolean);
+    }
 }

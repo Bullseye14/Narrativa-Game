@@ -8,6 +8,8 @@ public class enemyDummie : MonoBehaviour
     public GameObject player;
     public Transform playerPos;
 
+    Collider attackCollider;
+
     public Animator animator;
 
     public float movementSpeed;
@@ -18,6 +20,7 @@ public class enemyDummie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        attackCollider = GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
         playerPos = player.transform;
         movementSpeed = 8;
@@ -68,7 +71,15 @@ public class enemyDummie : MonoBehaviour
                     attack();
                 }
                
-            }           
+            }
+            else if(Time.time - lastAttackTime > 0.3f && Time.time - lastAttackTime < 1.0f)
+            {
+                attackCollider.enabled = true;
+            }
+            else if (Time.time - lastAttackTime > 1.0f)
+            {
+                attackCollider.enabled = false;
+            }
         }
     }
 
@@ -85,6 +96,8 @@ public class enemyDummie : MonoBehaviour
         {
             animator.SetTrigger("attack1");
         }
+
+        //attackCollider.enabled = true;
 
     }
 

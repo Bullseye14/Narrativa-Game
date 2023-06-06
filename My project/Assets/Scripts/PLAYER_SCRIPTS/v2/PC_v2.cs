@@ -23,6 +23,11 @@ public class PC_v2 : MonoBehaviour
 
     float DashCallTime;
     float speedMultiplyer;
+
+    float playerHealth;
+    bool dead;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -34,6 +39,10 @@ public class PC_v2 : MonoBehaviour
         attacking = false;
         DashCallTime = 0;
         speedMultiplyer = 1f;
+
+        playerHealth = 100;
+        dead = false;
+
     }
 
     // Update is called once per frame
@@ -45,13 +54,21 @@ public class PC_v2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveChC();
-        rotateChC();
 
-        if (attacking)
+        if(dead == false)
         {
-           //set colliders for attack
+            moveChC();
+
+            if (playerHealth <= 0)
+            {
+                Die();
+            }
+        }else if (dead)
+        {
+           
         }
+
+        
     }
 
 
@@ -126,12 +143,26 @@ public class PC_v2 : MonoBehaviour
             characterController.Move(camera.transform.right * -movementSpeed * Time.deltaTime * speedMultiplyer);
         }
     }
-
-    private void rotateChC()
+    void takeDamage(float damage)
     {
-        
+        playerHealth -= damage;
+        Debug.Log(playerHealth.ToString());
     }
 
-    
+    void Die()
+    {
+        dead = true;
+        animatorHandler.setAnimationBool("dead", true);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "enemy0")
+        {
+            
+            takeDamage(30);
+
+        }
+       
+    }
 
 }
