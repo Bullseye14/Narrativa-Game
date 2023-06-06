@@ -18788,7 +18788,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee09ead5dc1b8e44c9ad784236a1f6fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1bec4b2d26dc11143a88dd81e8a4f1c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25588,6 +25588,10 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4906004120740916096, guid: ca4366748a4d9d24abc94c545dc947ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b58be2bf42e3f84e9eb369813490164, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca4366748a4d9d24abc94c545dc947ad, type: 3}
 --- !u!1 &1422169592
@@ -28900,6 +28904,7 @@ MonoBehaviour:
   moralDecisions: 0
   moiraDecisions: 0
   playerCanMove: 1
+  doingMission: 0
   inputActivateMission:
     m_Name: Input Activate Mission
     m_Type: 0
