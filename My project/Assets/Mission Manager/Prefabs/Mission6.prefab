@@ -56,9 +56,9 @@ MonoBehaviour:
   missionManager: {fileID: 0}
   fixedName: 
   spawnObjectsList:
-  - {fileID: 3630320279220870722, guid: 07daf67312133f844abfc9b2dbde2495, type: 3}
-  - {fileID: 473830745635520847, guid: 83a70c9e9dbcd7b4bb85cd8634ee9f92, type: 3}
-  - {fileID: 4070270786170941914, guid: 27f458f32df980241839de8ac5ace251, type: 3}
+  - {fileID: 4330273033013115431, guid: 07daf67312133f844abfc9b2dbde2495, type: 3}
+  - {fileID: 7886645183497523218, guid: 83a70c9e9dbcd7b4bb85cd8634ee9f92, type: 3}
+  - {fileID: 7260606477753440227, guid: 27f458f32df980241839de8ac5ace251, type: 3}
   - {fileID: 3472743111129411564, guid: c52746cda39d9dc428d0a4eaf5ff5d62, type: 3}
   - {fileID: 4068424603548653093, guid: 60447974c8549364584cd606e0252527, type: 3}
   objectsManagerList: []

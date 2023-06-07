@@ -45,7 +45,7 @@ public class PC_v2 : MonoBehaviour
         DashCallTime = 0;
         speedMultiplyer = 1f;
 
-        playerHealth = 1000;
+        playerHealth = 10000;
         dead = false;
 
     }
