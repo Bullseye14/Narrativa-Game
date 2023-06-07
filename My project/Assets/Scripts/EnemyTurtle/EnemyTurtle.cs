@@ -38,6 +38,7 @@ public class EnemyTurtle : MonoBehaviour
         monsterHealth = 30;
         attackDamage = 20;
         attackDelay = 3;
+        audioManager.instance.PlaySound(attack2AudioClip);
     }
 
     // Update is called once per frame
