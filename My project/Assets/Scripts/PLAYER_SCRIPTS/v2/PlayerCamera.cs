@@ -29,6 +29,7 @@ public class PlayerCamera : MonoBehaviour
 
         manager = GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     //// Update is called once per frame
