@@ -30,9 +30,11 @@ public class PC_v2 : MonoBehaviour
     bool dead;
     public float attackDamage;
 
+    public MissionsManager manager;
 
     void Start()
     {
+        manager = GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         animatorHandler = GetComponent<AH_v2>();
@@ -53,14 +55,15 @@ public class PC_v2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!manager.playerCanMove) verticalInput = 0;
     }
 
 
     private void FixedUpdate()
     {
+        if (!manager.playerCanMove) verticalInput = 0;
 
-        if(dead == false)
+        if (dead == false)
         {
             moveChC();
 
@@ -71,21 +74,29 @@ public class PC_v2 : MonoBehaviour
         }else if (dead)
         {
            
-        }
-
-        
+        }        
     }
 
 
     public void setMovementValues(Vector2 moveVec)
     {
-                 
-        horizontalInput = moveVec.x;
-        verticalInput = moveVec.y;
+        if (manager.playerCanMove)
+        {
+            horizontalInput = moveVec.x;
+            verticalInput = moveVec.y;
+            animatorHandler.setAnimatorMovementValues(moveVec.magnitude);
+        }
+
+        else 
+        { 
+            horizontalInput = 0;
+            verticalInput = 0;
+            animatorHandler.setAnimatorMovementValues(0);
+        }
        
         //if(verticalInput != 0)
         //{
-            animatorHandler.setAnimatorMovementValues(moveVec.magnitude);
+
         //}
         //else
         //{
@@ -120,42 +131,48 @@ public class PC_v2 : MonoBehaviour
 
     private void moveChC()
     {
+        if (manager.playerCanMove)
+        {
+            if (Time.time - DashCallTime > 0.2)//dash duration
+                speedMultiplyer = 1.0f;//return to normal velocity
+            float y = transform.position.y;
+            movementForward = Vector3.Normalize(transform.position - camera.transform.position);
+
+
+            if (verticalInput > 0.1)
+            {
+
+                Vector3 lookDir = camera.transform.forward;
+                lookDir.y = transform.forward.y;
+
+                transform.forward = lookDir;
+                characterController.Move(transform.forward * movementSpeed * Time.deltaTime * speedMultiplyer);
+
+            }
+            else if (verticalInput < -0.1)
+            {
+
+                Vector3 lookDir = camera.transform.forward;
+                lookDir.y = transform.forward.y;
+
+                transform.forward = lookDir;
+
+                characterController.Move(transform.forward * -movementSpeed * Time.deltaTime * speedMultiplyer);
+
+            }
+            if (horizontalInput > 0.1)
+            {
+                characterController.Move(camera.transform.right * movementSpeed * Time.deltaTime * speedMultiplyer);
+            }
+            else if (horizontalInput < -0.1)
+            {
+                characterController.Move(camera.transform.right * -movementSpeed * Time.deltaTime * speedMultiplyer);
+            }
+        }
+
+        else
+            characterController.Move(Vector3.zero);
         
-        if (Time.time - DashCallTime > 0.2)//dash duration
-            speedMultiplyer = 1.0f;//return to normal velocity
-        float y = transform.position.y;
-        movementForward = Vector3.Normalize(transform.position - camera.transform.position);
-        
-
-        if (verticalInput > 0.1)
-        {
-
-            Vector3 lookDir = camera.transform.forward;
-            lookDir.y = transform.forward.y;
-            
-            transform.forward = lookDir;
-            characterController.Move(transform.forward * movementSpeed * Time.deltaTime * speedMultiplyer);
-
-        }
-        else if (verticalInput < -0.1)
-        {
-
-            Vector3 lookDir = camera.transform.forward;
-            lookDir.y = transform.forward.y;
-
-            transform.forward = lookDir;
-
-            characterController.Move(transform.forward * -movementSpeed * Time.deltaTime * speedMultiplyer);
-
-        }
-        if (horizontalInput > 0.1)
-        {
-            characterController.Move(camera.transform.right * movementSpeed * Time.deltaTime * speedMultiplyer);
-        }
-        else if (horizontalInput < -0.1)
-        {
-            characterController.Move(camera.transform.right * -movementSpeed * Time.deltaTime * speedMultiplyer);
-        }
     }
     void takeDamage(float damage)
     {

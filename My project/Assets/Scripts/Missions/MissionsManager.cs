@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MissionsManager : MonoBehaviour
 {
+    public GameObject animator;
     public bool initialTextFinished = false;
     public bool finishedGame = false;
     // Llista amb totes les possibles missions
@@ -196,6 +197,7 @@ public class MissionsManager : MonoBehaviour
                 if (inputActivateMission.ReadValue<float>() > 0.3)
                 {
                     playerCanMove = false;
+                    animator.GetComponent<AH_v2>().setAnimatorMovementValues(0);
                     ActivateUI();
                 }
             }
@@ -228,6 +230,7 @@ public class MissionsManager : MonoBehaviour
                         doingMission = false;
                         activeMissionBeh.missionState = 2;
                         playerCanMove = false;
+                        animator.GetComponent<AH_v2>().setAnimatorMovementValues(0);
 
                         ActivateUI();
                     }

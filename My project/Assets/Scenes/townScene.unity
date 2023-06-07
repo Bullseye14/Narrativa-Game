@@ -29376,6 +29376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd866cdfc373c54394e2c5100958ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 112997333}
   initialTextFinished: 0
   finishedGame: 0
   missions:
