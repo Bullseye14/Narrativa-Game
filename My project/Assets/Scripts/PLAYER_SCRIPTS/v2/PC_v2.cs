@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class PC_v2 : MonoBehaviour
 {
-    [SerializeField] private AudioClip slashClip;
-    [SerializeField] private AudioClip dashClip;
-    [SerializeField] private AudioClip runClip;
-    [SerializeField] private AudioClip spinClip;
-    [SerializeField] private AudioClip hurtClip;
-
+    // Start is called before the first frame update
 
     //INPUTS
     public float verticalInput;
@@ -19,7 +14,7 @@ public class PC_v2 : MonoBehaviour
     public float rotationSpeed;
 
     AH_v2 animatorHandler;
-    AudioSource audioSource;
+
     CharacterController characterController;
     public Camera camera;
     Rigidbody rb;
@@ -38,7 +33,6 @@ public class PC_v2 : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         animatorHandler = GetComponent<AH_v2>();
@@ -167,7 +161,6 @@ public class PC_v2 : MonoBehaviour
     {
         playerHealth -= damage;
         Debug.Log("currPlayerHealth"+playerHealth.ToString());
-        audioSource.PlayOneShot(hurtClip);
     }
 
     void disableBoxCollider()
@@ -183,16 +176,12 @@ public class PC_v2 : MonoBehaviour
     void attack0()
     {
         boxCollider.enabled = true;
-        audioSource.PlayOneShot(slashClip);
         Invoke("disableBoxCollider", 0.3f);
     }
 
     void attack1()
     {
         sphereCollider.enabled = true;
-        audioSource.PlayOneShot(slashClip);
-        audioSource.PlayOneShot(slashClip);
-        audioSource.PlayOneShot(slashClip);
         Invoke("disableSphereCollider", 0.3f);
     }
 
