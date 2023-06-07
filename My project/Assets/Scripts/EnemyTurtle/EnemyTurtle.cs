@@ -119,7 +119,7 @@ public class EnemyTurtle : MonoBehaviour
         if (attack > 4)
         {
             animator.SetTrigger("attack2");
-            audioManager.instance.PlaySound(attack2AudioClip);
+            //audioManager.instance.PlaySound(attack2AudioClip);
             attackDamage = 15;
         }
         else

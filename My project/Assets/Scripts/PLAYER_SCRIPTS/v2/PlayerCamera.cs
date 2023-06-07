@@ -28,6 +28,7 @@ public class PlayerCamera : MonoBehaviour
         target = characterController.transform;
 
         manager = GameObject.Find("Missions Handler").GetComponent<MissionsManager>();
+        Cursor.visible = false;
     }
 
     //// Update is called once per frame

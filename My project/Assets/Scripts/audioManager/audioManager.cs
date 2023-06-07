@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class audioManager : MonoBehaviour
 {
-    public static audioManager instance;
 
-    [SerializeField] private AudioSource musicSource, effectSource;
+
+    [SerializeField] private AudioSource musicSource;
+
+    [SerializeField] private AudioClip music;
 
     private void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
-
+    private void Start()
+    {
+        musicSource = GetComponent<AudioSource>();
+        musicSource.Play(0);
+    }
     public void PlaySound(AudioClip clip)
     {
-        effectSource.PlayOneShot(clip);
+       
     }
 
     public void changeMasterVolume(float newVol)
