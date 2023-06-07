@@ -45,7 +45,11 @@ public class TextAnim : MonoBehaviour
 
     public void GetNewText()
     {
-        filePath = missionsManager.interactingMission.GetComponent<MissionBehaviour>().DesiredFilePath();
+        if (missionsManager.initialTextFinished)
+            filePath = missionsManager.interactingMission.GetComponent<MissionBehaviour>().DesiredFilePath();
+
+        else filePath = "Assets/Mission Manager/UI/Dialogs/Texts/InitialText.txt";
+
         stringArray = File.ReadAllLines(filePath);
 
         EndCheck();
@@ -63,25 +67,42 @@ public class TextAnim : MonoBehaviour
 
         else
         {
-            i = 0;
-            _textMeshPro.text = "";
-
-            enter.SetActive(false);
-            this.gameObject.SetActive(false);
-
-            missionsManager.playerCanMove = true;
-
-            if (missionsManager.interactingMission.GetComponent<MissionBehaviour>().missionState == 1)
+            if (missionsManager.initialTextFinished)
             {
-                missionsManager.DecisionTime();
+                i = 0;
+                _textMeshPro.text = "";
+
+                enter.SetActive(false);
+                this.gameObject.SetActive(false);
+
+                missionsManager.playerCanMove = true;
+
+                if (missionsManager.interactingMission.GetComponent<MissionBehaviour>().missionState == 1)
+                {
+                    missionsManager.DecisionTime();
+                }
+
+                MissionBehaviour behaviour = missionsManager.activeMission.GetComponent<MissionBehaviour>();
+
+                if (behaviour.missionState == 2)
+                {
+                    if (behaviour.dificultat == 0) missionsManager.MissionResult(0, behaviour.dificultat);
+                    else if (behaviour.dificultat == 1) missionsManager.MissionResult(1, behaviour.dificultat);
+                }
             }
-
-            MissionBehaviour behaviour = missionsManager.activeMission.GetComponent<MissionBehaviour>();
-
-            if (behaviour.missionState == 2)
+            else
             {
-                if (behaviour.dificultat == 0) missionsManager.MissionResult(0, behaviour.dificultat);
-                else if (behaviour.dificultat == 1) missionsManager.MissionResult(1, behaviour.dificultat);
+                missionsManager.initialTextFinished = true;
+
+                i = 0;
+                _textMeshPro.text = "";
+
+                enter.SetActive(false);
+                this.gameObject.SetActive(false);
+
+                missionsManager.playerCanMove = true;
+
+                missionsManager.NewActiveMission(6);
             }
         }
     }

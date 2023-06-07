@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MissionsManager : MonoBehaviour
 {
+    public bool initialTextFinished = false;
     public bool finishedGame = false;
     // Llista amb totes les possibles missions
     public List<GameObject> missions;
@@ -42,11 +44,11 @@ public class MissionsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerCanMove = false;
+
         F.SetActive(false);
 
         RandomChosenMissions();
-
-        NewActiveMission(activateMissions.Count);
     }
 
     private void RandomChosenMissions()
@@ -115,6 +117,8 @@ public class MissionsManager : MonoBehaviour
             finishedGame = true;
             // S'acaba el joc ja 
             // Aquí s'ha de posar un fade black, una animació o algo i que surti la pantalla final amb el score i un play again o algo
+
+            this.gameObject.GetComponent<EndLevel>().ActivateEnd();
         }
     }
 
@@ -137,13 +141,14 @@ public class MissionsManager : MonoBehaviour
             // I era fàcil
             if (diff == 0)
             {
-                moralDecisions += 1;
+                moralDecisions += 5;
                 moiraDecisions += 1;
             }
 
             // I era difícil
             else
             {
+                moralDecisions -= 5;
                 moiraDecisions += 1;
             }
 
@@ -157,7 +162,11 @@ public class MissionsManager : MonoBehaviour
             // I era difícil
             if (diff == 1)
             {
-                moralDecisions += 1;
+                moralDecisions += 10;
+            }
+            else
+            {
+                moralDecisions -= 10;
             }
 
             // Hem triat opció dreta
@@ -257,5 +266,14 @@ public class MissionsManager : MonoBehaviour
     private void OnDisable()
     {
         inputActivateMission.Disable();
+    }
+
+    public void EndScene()
+    {
+        if (moralDecisions >= 0)
+            SceneManager.LoadScene("goodEndScene");
+
+        else
+            SceneManager.LoadScene("badEndScene");
     }
 }
